@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://git.cabbagebox.com/javascript/RNProjectTools.git"
+    "url": "git+https://github.com/cham1985/RNProjectTools.git"
   },
   "author": "stark",
   "license": "MIT",
