@@ -12,7 +12,7 @@
   },
   "author": "stark",
   "license": "MIT",
-  "homepage": "https://git.cabbagebox.com/javascript/RNProjectTools.git",
+  "homepage": "https://github.com/cham1985/RNProjectTools.git",
   "dependencies": {
     "native-base": "^2.13.12",
     "prop-types": "^15.7.2",
