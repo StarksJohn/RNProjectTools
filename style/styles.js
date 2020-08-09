@@ -19,7 +19,10 @@ export const pageCellMarginL = 12
  * 在 Android 中，页面默认非全屏（状态栏占空间），状态栏内容默认是浅色
  * React Native 官方提供了 StatusBar 组件用于控制状态栏，支持设置内容深浅色，状态栏背景（Android）等。不同于 Android 中的状态栏，在 React Native 中状态栏是公用的，任何一个地方修改状态栏都会导致状态栏发生变化，即使切换到了其他未设置的页面。因此，我们需要在每个页面渲染时都设置一下相应的状态栏，或是在离开设置了状态栏的页面时重置状态栏
  */
-export const statusBarH = Platform.OS === 'ios' ? (isIphoneX() ? 34 : 18) : StatusBar.currentHeight/*安卓默认12*/
+export const statusBarH = Platform.select({
+  ios: ifIphoneX(44, 20),
+  android: StatusBar.currentHeight,
+}) //Platform.OS === 'ios' ? (isIphoneX() ? 34 : 18) : StatusBar.currentHeight/*安卓默认12*/
 export const mainBackgroundColor = '#ececec'
 export const primaryColor = '#24292e'
 
@@ -38,9 +41,11 @@ const _gStyles = {
       grayBackColor: '#F5F5F5'
     },
   ipxHeader: 40,//ipx顶部偏移量
-  ipxPaddingBottom: {//ipx底部偏移量
+  ipxPaddingBottom: {//ipx底部偏移量,老项目用
     height: 25,
   },
+  //ipx底部偏移量，新项目用
+  ipxBottomSpace:ifIphoneX(34, 0),
   pageCellW: {//页面里的cell 的宽
     width: screenWidth - pageCellMarginL * 2
   },
