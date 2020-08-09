@@ -20,7 +20,7 @@
 import {
   Dimensions,
   PixelRatio,
-  Platform
+  Platform, StatusBar
 } from 'react-native'
 
 //https://juejin.im/post/5c4949bc6fb9a049bd42a6eb
@@ -33,11 +33,25 @@ const XSMAX_HEIGHT = 896
 const DEVICE_SIZE = Dimensions.get('window')
 const { height: D_HEIGHT, width: D_WIDTH } = DEVICE_SIZE
 export const isiOS = () => Platform.OS === 'ios'
+export const deviceWidth = Dimensions.get('window').width
+export const deviceHeight = Dimensions.get('window').height
+
+/**
+ * 本项目设计基准像素为750 * 1334，使用时视情况调整
+ * 按比例将设计的px转换成适应不同屏幕的dp
+ * @param designPx 设计稿标注的px值
+ * @returns {number}
+ */
+export function dp (designPx) {
+  return PixelRatio.roundToNearestPixel((designPx / 750) * deviceWidth)
+}
+
 let _isIphoneX = (() => {
-  let is = (
-    isiOS() &&
-    ((D_HEIGHT === X_HEIGHT && D_WIDTH === X_WIDTH) ||
-      (D_HEIGHT === X_WIDTH && D_WIDTH === X_HEIGHT)) ||
+  const is = (
+    isiOS() && !Platform.isPad &&
+    !Platform.isTVOS &&
+    ((D_HEIGHT === X_HEIGHT && D_WIDTH === X_WIDTH) || //竖屏
+      (D_HEIGHT === X_WIDTH && D_WIDTH === X_HEIGHT)) || //横屏
     ((D_HEIGHT === XSMAX_HEIGHT && D_WIDTH === XSMAX_WIDTH) ||
       (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT))
   )
@@ -45,8 +59,14 @@ let _isIphoneX = (() => {
   return is
 })()
 
-export const deviceWidth = Dimensions.get('window').width
-export const deviceHeight = Dimensions.get('window').height
+// 获取状态栏高度
+export function getStatusBarHeight () {
+  return Platform.select({
+    ios: ifIphoneX(44, 20),
+    android: StatusBar.currentHeight,
+  })
+}
+
 /**
  * ipx 之前的 非刘海屏都是 1：1.7x
  * 大佬非全面屏手机：1.68
