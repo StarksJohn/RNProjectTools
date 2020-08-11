@@ -25,12 +25,14 @@ export default class _Button extends Component {
     hideBorder: false
   }
 
+  state={ height: this.props.style.height || 0 }
+
   // 构造方法
-  constructor (props) {
-    super(props)
-    // 定义state
-    this.state = { height: props.style.height || 0 }
-  }
+  // constructor (props) {
+  //   // super(props) 注掉又 报错 Super expression must either be null or  a  function，故把 constructor 注掉
+  //   // 定义state
+  //   this.state =
+  // }
 
   // 组件已装载
   componentDidMount () {
