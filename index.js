@@ -18,37 +18,56 @@ import FlatList from './components/FlatList'
 import constant from './constant/constant'
 import SectionList from './components/SectionList'
 import homeSpringBoxQueue from './tools/homeSpringBoxQueue'
-import Toast from './components/Toast'
-import teaset from 'teaset'
+// import Toast from './components/Toast' //导致编译报错：Super expression must either be null or  a  function
+// import teaset from 'teaset'导致编译报错：Super expression must either be null or  a  function,不能 直接导出
 import SearchInput from './components/SearchInput'
 import VerificationCodeBt from './components/VerificationCodeBt'
 import TextBt from './components/TextBt'
 import ImgBt from './components/ImgBt'
 import clipboardTools from './tools/clipboardTools'
 import BasePureComponent from './components/BasePureComponent'
-import Banner from './components/Banner'
+// import Banner from './components/Banner'导致编译报错：Super expression must either be null or  a  function
 import GridView from './components/GridView'
-import FullScreenLoading from './components/FullScreenLoading'
+// import FullScreenLoading from './components/FullScreenLoading'导致编译报错：Super expression must either be null or  a  function
 import dateTools from './tools/dateTools'
 import *as Math from './tools/Math'
 import md5 from './tools/md5'
 import ScrollView from './components/ScrollView'
 
 const RNProjectTools = {
-  baseTimer, constant, ScrollView,
-  arrayUtils, SectionList,
-  EventListener, FullScreenLoading,
-  objUtils, Banner,
-  stringUtils, GridView,
-  ScreenUtils, Math,
-  styles, ImgBt,
-  ViewPropTypes, md5,
-  Text, SearchInput,
-  Button, Toast, TextBt,
-  PureComponent, dateTools,
-  tool, homeSpringBoxQueue, BasePureComponent,
-  HttpManager, teaset, VerificationCodeBt,
-  netwrokCode, FlatList, clipboardTools
+  baseTimer,
+  constant,
+  ScrollView,
+  arrayUtils,
+  SectionList,
+  EventListener,
+  // FullScreenLoading,
+  objUtils,
+  // Banner,
+  stringUtils,
+  GridView,
+  ScreenUtils,
+  Math,
+  styles,
+  ImgBt,
+  ViewPropTypes,
+  md5,
+  Text,
+  SearchInput,
+  Button,
+  // Toast,
+  TextBt,
+  PureComponent,
+  dateTools,
+  tool,
+  homeSpringBoxQueue,
+  BasePureComponent,
+  HttpManager,
+  // teaset,
+  VerificationCodeBt,
+  netwrokCode,
+  FlatList,
+  clipboardTools
 }
 
 module.exports = RNProjectTools
