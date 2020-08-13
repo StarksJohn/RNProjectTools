@@ -18,17 +18,17 @@ import FlatList from './components/FlatList'
 import constant from './constant/constant'
 import SectionList from './components/SectionList'
 import homeSpringBoxQueue from './tools/homeSpringBoxQueue'
-// import Toast from './components/Toast' //导致编译报错：Super expression must either be null or  a  function
-// import teaset from 'teaset'导致编译报错：Super expression must either be null or  a  function,不能 直接导出
+import Toast from './components/Toast' //
+import *as teaset from 'teaset'//
 import SearchInput from './components/SearchInput'
 import VerificationCodeBt from './components/VerificationCodeBt'
 import TextBt from './components/TextBt'
 import ImgBt from './components/ImgBt'
 import clipboardTools from './tools/clipboardTools'
 import BasePureComponent from './components/BasePureComponent'
-// import Banner from './components/Banner'导致编译报错：Super expression must either be null or  a  function
+import Banner from './components/Banner'
 import GridView from './components/GridView'
-// import FullScreenLoading from './components/FullScreenLoading'导致编译报错：Super expression must either be null or  a  function
+import FullScreenLoading from './components/FullScreenLoading'
 import dateTools from './tools/dateTools'
 import *as Math from './tools/Math'
 import md5 from './tools/md5'
@@ -41,9 +41,9 @@ const RNProjectTools = {
   arrayUtils,
   SectionList,
   EventListener,
-  // FullScreenLoading,
+  FullScreenLoading,
   objUtils,
-  // Banner,
+  Banner,
   stringUtils,
   GridView,
   ScreenUtils,
@@ -55,7 +55,7 @@ const RNProjectTools = {
   Text,
   SearchInput,
   Button,
-  // Toast,
+  Toast,
   TextBt,
   PureComponent,
   dateTools,
@@ -63,7 +63,7 @@ const RNProjectTools = {
   homeSpringBoxQueue,
   BasePureComponent,
   HttpManager,
-  // teaset,
+  teaset,
   VerificationCodeBt,
   netwrokCode,
   FlatList,
