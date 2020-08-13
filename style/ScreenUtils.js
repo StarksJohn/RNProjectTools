@@ -37,7 +37,16 @@ export const deviceWidth = Dimensions.get('window').width
 export const deviceHeight = Dimensions.get('window').height
 
 /**
- * 本项目设计基准像素为750 * 1334，使用时视情况调整
+ * 依赖此库的 具体项目 的设计基准像素为 750 * 1334 | 750*1624 ，使用时视情况调整
+ * @type {{}}
+ */
+const basis_pixels = {
+  width: 750,
+  H_1334: 1334, H_1624: 1624
+}
+
+/**
+ *
  * 按比例将设计的px转换成适应不同屏幕的dp
  * 0.63 新项目用此方法 代替 scaleSize 方法
  * @param designPx 设计稿标注的px值
