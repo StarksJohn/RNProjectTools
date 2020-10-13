@@ -17,6 +17,15 @@ String.prototype.sf_rtrim = function () {
 }
 
 /**
+ * Remove the spaces on both sides and the middle of the string
+ * /https://blog.csdn.net/weixin_44819874/article/details/108586738
+ * @returns {string}
+ */
+String.prototype.sf_trim = function () {
+  return this.replace(/(^\s*)|(\s*$)/g, '').replace(/\s/g, '')
+}
+
+/**
  * str 里 包含 base 字符串的 起始下标，不包含时返回 -1
  * @param str
  * @param text
