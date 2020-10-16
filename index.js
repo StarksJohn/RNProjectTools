@@ -33,6 +33,10 @@ import dateTools from './tools/dateTools'
 import *as Math from './tools/Math'
 import md5 from './tools/md5'
 import ScrollView from './components/ScrollView'
+import useAppStateListener from './components/CustomHooks/useAppStateListener'
+import useAndroidBackHandler from './components/CustomHooks/useAndroidBackHandler'
+import useNavFocusListener from './components/CustomHooks/useNavFocusListener'
+import useSubscribeKeyboard from './components/CustomHooks/useSubscribeKeyboard'
 
 const RNProjectTools = {
   baseTimer,
@@ -67,7 +71,7 @@ const RNProjectTools = {
   VerificationCodeBt,
   netwrokCode,
   FlatList,
-  clipboardTools
+  clipboardTools, useAppStateListener, useSubscribeKeyboard, useNavFocusListener, useAndroidBackHandler
 }
 
 module.exports = RNProjectTools
