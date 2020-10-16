@@ -1,5 +1,5 @@
-# RN 项目共用的 组件,此库里暂时不包含任何依赖原生的第三方库
+# Common components, temporarily does not include any third-party libraries that rely on native code
 
-## 此库每次push 代码后，主项目 npm i --f RNProjectTools  或  yarn upgrade RNProjectTools   即可更新到代码, 
+#Every time you push, the main project can be updated to the code with npm i --f RNProjectTools or yarn upgrade RNProjectTools,
 
   
