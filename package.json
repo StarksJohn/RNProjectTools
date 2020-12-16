@@ -14,11 +14,11 @@
   "license": "MIT",
   "homepage": "https://github.com/cham1985/RNProjectTools.git",
   "dependencies": {
-    "native-base": "^2.13.12",
+    "native-base": "^2.13.13",
     "prop-types": "^15.7.2",
     "react": "~16.13.1",
     "react-native": "~0.63.2",
-    "react-redux": "^7.2.1",
+    "react-redux": "^7.2.0",
     "teaset": "https://github.com/cham1985/teaset.git"
   }
 }
