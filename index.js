@@ -1,10 +1,10 @@
 // index.js
 
 import baseTimer from './tools/baseTimer'
-import arrayUtils from './tools/arrayUtils'
+import arrayUtils from './tools/arrayTools'
 import EventListener from './tools/EventListener'
 import objUtils from './tools/objUtils'
-import *as stringUtils from './tools/stringUtils'
+import *as stringUtils from './tools/stringTools'
 import *as ScreenUtils from './style/ScreenUtils'
 import styles from './style/styles'
 import ViewPropTypes from './components/ViewPropTypes'

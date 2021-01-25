@@ -1,33 +1,42 @@
 // import RN组件 代码模板
-import React, {} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { View, TextInput, StyleSheet, Image } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import ViewPropTypes from './ViewPropTypes'
 import PureComponent from './PureComponent'
-import SearchInput from 'teaset/components/SearchInput/SearchInput'
-import *as stringUtils from '../tools/stringUtils'
-import Button from './Button'
-import *as ScreenUtils from '../style/ScreenUtils'
-import imgSource from '../res/img/imgSource'
-import _styles from '../style/styles'
+import _SearchInput from 'teaset/components/SearchInput/SearchInput'
+import { dp } from '../tools/screenTools'
+import appStyle from '../style/appStyle'
 
-//带 右侧 X按钮的 自定义 搜索控件，为了点击外部区域收起键盘，外层用 可用 Button 包起来
-export default class BaseSearchInput extends PureComponent {
+// 带 右侧 X按钮的 自定义 搜索控件，为了点击外部区域收起键盘，外层用 可用 Button 包起来
+export default class SearchInput extends PureComponent {
   // 定义props类型
   static propTypes = {
-    style: ViewPropTypes.style, name: PropTypes.bool,
-    searchInputStyle: ViewPropTypes.style,//teaset 里的 SearchInput 控件的 style
-    inputStyle: TextInput.propTypes.style,//RN 基础控件 TextInput 的style ,输入的内容 和 placeholder的 样式 通用
-    iconSize: PropTypes.number/*左侧🔍 icon的 大小，设置0可隐藏*/,
-    placeholder: PropTypes.string, onChange: PropTypes.func,
+    style: ViewPropTypes.style, // The outermost style of the current component
+    name: PropTypes.bool,
+    searchInputStyle: ViewPropTypes.style, // teaset 里的 SearchInput 控件的 style
+    inputStyle: TextInput.propTypes.style, // RN 基础控件 TextInput 的style ,输入的内容 和 placeholder的 样式 通用
+    iconSize: PropTypes.number/* 左侧🔍 icon的 大小，设置0可隐藏 */,
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
     placeholderTextColor: PropTypes.string,
-    searchApi: PropTypes.func, autoFocus: PropTypes.bool,
-    xBtStyle: ViewPropTypes.style, onKeyPress: PropTypes.bool,
-    onXbtPress: PropTypes.func, showUnderLine: PropTypes.bool,//是否显示下横线
-    searcValue: PropTypes.string, returnKeyType: PropTypes.string,
-    showXBt: PropTypes.bool, onChangeText: PropTypes.func, inputContainer: ViewPropTypes.style,//可 定义 placeholder 的位置，如 justifyContent: 'start'
+    searchApi: PropTypes.func,
+    autoFocus: PropTypes.bool,
+    xBtStyle: ViewPropTypes.style,
+    onKeyPress: PropTypes.bool,
+    onXbtPress: PropTypes.func,
+    showUnderLine: PropTypes.bool, // 是否显示下横线
+    searcValue: PropTypes.string,
+    returnKeyType: PropTypes.string,
+    showXBt: PropTypes.bool,
+    onChangeText: PropTypes.func,
+    inputContainer: ViewPropTypes.style, // 可 定义 placeholder 的位置，如 justifyContent: 'start'
     // 就可让 placeholder 居左 ,
-    placeholderContainer: ViewPropTypes.style, useEmoji: PropTypes.bool,//是否支持输入 emoji
+    placeholderContainer: ViewPropTypes.style,
+    useEmoji: PropTypes.bool, // 是否支持输入 emoji
+    selectionColor: PropTypes.string,
+    caretHidden: PropTypes.bool,
+    textAlignVertical: PropTypes.string
   }
 
   static defaultProps = {
@@ -39,7 +48,10 @@ export default class BaseSearchInput extends PureComponent {
     inputContainer: {},
     iconSize: 0,
     placeholderContainer: {},
-    useEmoji: false
+    useEmoji: false,
+    selectionColor: appStyle.blackText,
+    caretHidden: false,
+    textAlignVertical: 'center'// Default cursor is centered up and down;If the cursor wants to be in the upper left corner when there are multiple lines on Android, it needs to be set to 'top'
   }
 
   // 构造方法
@@ -47,7 +59,6 @@ export default class BaseSearchInput extends PureComponent {
     super(props)
     // 定义state
     this.state = { isFocused: false, searcValue: props.searcValue }
-
   }
 
   // 组件已装载
@@ -56,9 +67,8 @@ export default class BaseSearchInput extends PureComponent {
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    const shouldComponentUpdate = super.shouldComponentUpdate(nextProps, nextState)
     // console.log('SearchInput.js name=', this.props.name, ' shouldComponentUpdate=', shouldComponentUpdate, ' props=', this.props, ' nextProps=', nextProps)
-    return shouldComponentUpdate
+    return super.shouldComponentUpdate(nextProps, nextState)
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -88,7 +98,7 @@ export default class BaseSearchInput extends PureComponent {
 
   // 渲染组件
   render () {
-    const { style, searchInputStyle, returnKeyType, inputStyle, iconSize, placeholder, placeholderTextColor, searchApi, xBtStyle, children, onXbtPress, showXBt, onChangeText, inputContainer, onSubmitEditing, showUnderLine, name, onChange, onKeyPress, placeholderContainer, useEmoji, ...others } = this.props
+    const { style, searchInputStyle, returnKeyType, inputStyle, iconSize, placeholder, placeholderTextColor, searchApi, xBtStyle, children, onXbtPress, showXBt, onChangeText, inputContainer, onSubmitEditing, showUnderLine, name, onChange, onKeyPress, placeholderContainer, useEmoji, selectionColor, caretHidden, textAlignVertical, ...others } = this.props
     const { searcValue, isFocused } = this.state
 
     let _style = style
@@ -102,14 +112,14 @@ export default class BaseSearchInput extends PureComponent {
     const self = this
     return (
       <View style={[styles.container, _style]}>
-        <SearchInput
+        <_SearchInput
           ref={
             (r) => {
               self.searchInputR = r
             }
           }
-          {...others}
-          textAlignVertical={'top'}//避免安卓多行时 一开光标没有 在最顶部
+          {...others} caretHidden={caretHidden} selectionColor={selectionColor}
+          textAlignVertical={textAlignVertical}// 避免安卓多行时 一开光标没有 在最顶部
           style={searchInputStyle}
           returnKeyType={returnKeyType}
           inputStyle={inputStyle}
@@ -145,15 +155,9 @@ export default class BaseSearchInput extends PureComponent {
             }
           }}
           onContentSizeChange={({ nativeEvent: { contentSize: { width, height } } }) => {
-            // console.log('SearchInput.js onContentSizeChange width=', width)
-
           }}
-          // onTextInput={({ nativeEvent: { text, previousText, range: { start, end } } }) => {
-          //   console.log('SearchInput.js onTextInput  text=', text, '  previousText=', previousText)
-          //
-          // }}
           onChangeText={text => {
-            console.log('SearchInput.js onChangeText text=', text)
+            // console.log('SearchInput.js onChangeText text=', text)
             onChangeText && onChangeText(text)
           }}
           onKeyPress={({ nativeEvent: { key: keyValue } }) => {
@@ -164,7 +168,7 @@ export default class BaseSearchInput extends PureComponent {
           onSubmitEditing={
             async ({ nativeEvent }) => {
               self.setState({
-                searcValue: nativeEvent.text,
+                searcValue: nativeEvent.text
               }, async () => {
                 searchApi && searchApi(searcValue)
                 onSubmitEditing && onSubmitEditing(searcValue)
@@ -173,20 +177,20 @@ export default class BaseSearchInput extends PureComponent {
           }
 
         />
-        {/*X按钮*/}
-        {
-          (isFocused || (!stringUtils.isNull(self.state.searcValue))) && showXBt ?
-            <Button style={[styles._xBtStyle, xBtStyle]} onPress={() => {
-              self.setState({
-                searcValue: '',
-              }, () => {
-                onChangeText && onChangeText('')
-              })
-            }}>
-              <Image style={{ width: ScreenUtils.scaleSize(24), height: ScreenUtils.scaleSize(24) }} source={imgSource.deleteIcon} />
-            </Button>
-            : null
-        }
+        {/* X按钮 */}
+        {/* { */}
+        {/*  (isFocused || (!stringTools.isNull(self.state.searcValue))) && showXBt ? */}
+        {/*    <Button style={[styles._xBtStyle, xBtStyle]} onPress={() => { */}
+        {/*      self.setState({ */}
+        {/*        searcValue: '', */}
+        {/*      }, () => { */}
+        {/*        onChangeText && onChangeText('') */}
+        {/*      }) */}
+        {/*    }}> */}
+        {/*      <Image style={{ width: dp(24), height: dp(24) }} source={imgSource.deleteIcon} /> */}
+        {/*    </Button> */}
+        {/*    : null */}
+        {/* } */}
         {children}
       </View>
     )
@@ -197,10 +201,9 @@ export default class BaseSearchInput extends PureComponent {
 const styles = StyleSheet.create({
   _xBtStyle: {
     position: 'absolute',
-    right: ScreenUtils.scaleSize(10),
-    width: ScreenUtils.scaleSize(30),
-    height: ScreenUtils.scaleSize(30),
+    right: dp(10),
+    width: dp(30),
+    height: dp(30)
     // backgroundColor: _styles.randomColor()
   }
 })
-

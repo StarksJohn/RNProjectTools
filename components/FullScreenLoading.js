@@ -7,7 +7,7 @@ import {
 import { Toast } from 'teaset'
 import Text from './base/BaseText/Text'
 import { scaleSize } from '../style/ScreenUtils'
-import imgSource from '../res/img/imgSource'
+import imgSource from '../res/imgs/imgSource'
 
 let loadingKey = null
 

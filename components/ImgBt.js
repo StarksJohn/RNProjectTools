@@ -15,6 +15,7 @@ import {
 } from 'react-native'
 import Button from './Button'
 import PureComponent from './PureComponent'
+import *as stringTools from '../tools/stringTools'
 
 export default class ImgBt extends PureComponent {
   static propTypes = {
@@ -29,17 +30,22 @@ export default class ImgBt extends PureComponent {
     localPath: PropTypes.number,//网络图片加载超时后显示的对应本地图片
     onTimeout: PropTypes.func,//网络图片加载超时回调
     timeInterval: PropTypes.number,//超时时间
+    showLoadingView: PropTypes.bool,
   }
 
   static defaultProps = {
-    onPress: null,
+    onPress: null, showLoadingView: false,
     onLoad: () => {
     },
     style: {},
     imgStyle: {}, hideBorder: true,
     uri: '', resizeMode: 'cover',
-    renderLoadingView: null,
-    imageSource: null, disabled: false
+    renderLoadingView: () => {
+      return <View style={styles.loadingView}>
+        <ActivityIndicator size='small' color='#888888' />
+      </View>
+    },
+    imageSource: null, disabled: false,
   }
 
   constructor (props) {
@@ -49,7 +55,7 @@ export default class ImgBt extends PureComponent {
   }
 
   state = {
-    isLoaded: false
+    loading: false
 
   }
 
@@ -84,20 +90,12 @@ export default class ImgBt extends PureComponent {
   }
 
   onLoad () {
-    this.setState(
-      {
-        isLoaded: true
-      }
-    )
+
   }
 
   renderLoadingView () {
-    if (this.props.imageSource) {
-      return null
-    }
-    return this.props.renderLoadingView ? this.props.renderLoadingView : <View style={styles.loadingView}>
-      <ActivityIndicator size='small' color='#888888' />
-    </View>
+    console.log('ImgBt.js renderLoadingView')
+    return this.props.showLoadingView && this.state.loading && this.props.renderLoadingView()
   }
 
   render () {
@@ -133,12 +131,30 @@ export default class ImgBt extends PureComponent {
           }
         } />
       } else {
-        img = <Image style={[styles.image, imgStyle]} source={source} resizeMode={resizeMode} onLoad={
-          () => {
-            this.onLoad()
-            onLoad()
-          }
-        }></Image>
+        img = <Image style={[styles.image, imgStyle]} source={source} resizeMode={resizeMode}
+                     onLoadStart={(e) => {
+                       console.log('ImgBt.js onLoadStart uri=', uri)
+                       this.setState({ loading: true })
+                     }}
+                     onProgress={(e) => {
+                       // console.log('ImgBt.js onProgress uri=', uri)
+                     }}
+                     onLoad={
+                       () => {
+                         console.log('ImgBt.js onLoad uri=', uri)
+                         this.onLoad()
+                         onLoad()
+                       }
+                     }
+                     onLoadEnd={(e) => {
+                       console.log('ImgBt.js onLoadEnd uri=', uri)
+                       this.setState(
+                         {
+                           loading: false
+                         }
+                       )
+                     }}>
+        </Image>
       }
     }
 
@@ -156,10 +172,10 @@ export default class ImgBt extends PureComponent {
         }
 
         {this.props.children}
-        {/* 菊花 */}
-        {/*{*/}
-        {/*  !this.state.isLoaded && source && this.renderLoadingView()*/}
-        {/*}*/}
+        {/*菊花*/}
+        {
+          !stringTools.isNull(uri) && this.renderLoadingView()
+        }
       </Button>
     )
   }
@@ -180,8 +196,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0
-    // backgroundColor: gColors.transparent,//'rgba(0,0,0,.5)'
+    bottom: 0,
+    backgroundColor: '#fff'
     // borderColor: gColors.transparent,
   }
 })

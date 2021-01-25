@@ -5,7 +5,7 @@
  */
 import EventListener from '../tools/EventListener'
 import PropTypes from 'prop-types'
-import *as stringUtils from '../tools/stringUtils'
+import *as stringUtils from '../tools/stringTools'
 import PureComponent from './PureComponent'
 
 export default class BasePureComponent extends PureComponent {

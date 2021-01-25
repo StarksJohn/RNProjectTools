@@ -35,5 +35,53 @@ export default {
       n = n + unitStr
     }
     return n
-  }
+  },
+
+  /**
+   *
+   * @param old
+   * @param now
+   * @param keys :比较全部属性: Object.keys(old) 或  比较某个属性 :['memberList']
+   * @returns {boolean}
+   */
+   shouldUpdate : (old, now, keys) => {
+    const isEmpty = object => {
+      if (object === null) {
+        return true;
+      } else {
+        switch (typeof object) {
+          case "undefined": {
+            return true;
+          }
+          case "string": {
+            return object === "";
+          }
+          case "object": {
+            for (const key in object) {
+              return false;
+            }
+            return true;
+          }
+          default: {
+            return false;
+          }
+        }
+      }
+    };
+    if (!isEmpty(keys)) {
+      for (const i in keys) {
+        const key = keys[i];
+        const oldValue = old[key];
+        const nowValue = now[key];
+        if (typeof oldValue !== "function" && typeof nowValue !== "function") {
+          try {
+            if (JSON.stringify(oldValue) !== JSON.stringify(nowValue)) {
+              return true;
+            }
+          } catch (e) {}
+        }
+      }
+    }
+    return false;
+  },
 }

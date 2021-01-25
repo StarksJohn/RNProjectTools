@@ -4,6 +4,7 @@
 export default Object.freeze({
   listPageSize: 10,//列表每页请求数据数量
   event: {
+    appStateChanged: 'appStateChanged',
     executeHomeSpringBoxQueueEvent: '执行首页某个弹框任务的事件', appState: {
       inactive: 'inactive', background: 'background', active: 'active',
       AudioPlayerPlaying: '音频播放器开始播放', AudioPlayerStop: '音频播放器停止'

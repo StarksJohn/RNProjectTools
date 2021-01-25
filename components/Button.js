@@ -47,7 +47,7 @@ export default class _Button extends Component {
     const { style, noGradientWhenPressed, name, hideBorder } = this.props
     const { height } = this.state
     const rest = {}
-    if (noGradientWhenPressed || Platform.OS === 'ios'/*产品说ios不要点击效果*/) {
+    if (noGradientWhenPressed) {
       rest.activeOpacity = 1
     }
 

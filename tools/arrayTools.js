@@ -95,6 +95,17 @@ Array.prototype.sf_remove = function (val) {
 }
 
 /**
+ * @param arr
+ * @param predicateFunc : (element)=>{
+                        return element.id==0
+                     }
+ */
+const removeObject = (arr, predicateFunc) => {
+  const index = arr.findIndex(predicateFunc);
+  arr.sf_removeObjectAtIndex(index);
+};
+
+/**
  * 删某个下标对应的元素
  * @param i
  */
@@ -272,6 +283,24 @@ Array.prototype.sf_dedupe = function () {
 }
 
 /**
+ *  扩展运算符实现数组的 深拷贝
+ * https://www.cnblogs.com/lvonve/p/11334628.html
+ * @param obj
+ * @returns {*}
+ */
+const deepCopyArr = obj => {
+  // return [...this]// 不能用  {...this}，因为 this 是 array类型，深拷贝出来的类型也得是 [] 类型
+  var newobj = obj.constructor === Array ? [] : {};
+  if (typeof obj !== "object") {
+    return;
+  }
+  for (const i in obj) {
+    newobj[i] = typeof obj[i] === "object" ? deepCopyArr(obj[i]) : obj[i];
+  }
+  return newobj;
+};
+
+/**
  *  扩展运算符实现数组的深拷贝
  *  http://blog.csdn.net/fungleo/article/details/54931379
  * @param obj
@@ -368,8 +397,18 @@ const slice = (startIndex, endIndex, arr) => {
   return res
 }
 
+/**
+ * 获取数组最后一个元素
+ * @param arr
+ * @returns {*}
+ */
+const getLastOne = arr => {
+  return arr.slice(-1)[0];
+};
+
 export default {
-  oneToTwoDimensional, sf_filter, twoToOneArr, slice
+  oneToTwoDimensional, sf_filter, twoToOneArr, slice, removeObject,
+  deepCopyArr,getLastOne
 }
 
 

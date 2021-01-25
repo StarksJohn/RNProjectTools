@@ -20,6 +20,10 @@ export const API_ERROR_REFRESH_DEVICE = 2104    //  refresh  非本设备操作
 export const refreTokenInvalid = 101 //refreshtoken  失效
 export const refreshErr = 100// refresh错误
 export const notbindPhone = 2010//未绑定手机
+export const USER_BANNED = 40101 // The user was disabled because of violation of certain provisions
+export const TOKEN_EXPIRED = 40102
+export const PARAM_BLANK = 422
+export const Unauthorized = 401// "Your request was made with invalid credentials."
 
 // export function handlerError ({
 //                                 code, data, message

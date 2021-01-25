@@ -43,6 +43,8 @@ export default function useAndroidBackHandler (props) {
     /*The async keyword cannot be added to the first parameter https://juejin.im/post/6844903985338400782#heading-27 */
     () => {
       console.log('useAndroidBackHandler componentDidMount')
+      // gNavigation = navigation // for NavBackBt.js gNavigation.goBack()
+
       //todo
       BackHandler.addEventListener('hardwareBackPress', _handleBackPress)
 

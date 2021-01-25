@@ -1,5 +1,5 @@
 /**
- * stringUtils.js
+ * stringTools.js
  * 给 String.prototype上添加的方法和属性，名字别和 系统方法或系统变量的名字重名，否则 所有 其他库调到系统方法或变量时，就会调你自己重写的方法,导致BUG
  * http://www.cnblogs.com/lhyhappy65/p/6061143.html js中字符串的操作
  * concat  slice    substring  substr  split
@@ -105,6 +105,94 @@ export function contain (str1, str2) {
 }
 
 /**
+ * 判断字符串中是否存在子字符串(不区分大小写)
+ * @param str
+ * @param subStr
+ * @returns {*}
+ */
+export function coverString(str, subStr) {
+  const reg = eval("/" + subStr + "/ig");
+  return reg.test(str);
+}
+
+// 16进制数转10进制
+export function ex16hex(value) {
+  value = stripscript(value);
+  value = value.replace("0x", "");
+  var arr = value.split("");
+  arr = arr.reverse();
+  var len = arr.length;
+  var res = 0;
+  arr.map((v, i, array) => {
+    var num = hex_change(v);
+    console.log(num);
+    res += muti16(num, i);
+  });
+  return res;
+}
+
+// 返回 v 乘以 n 个 16 的积
+export function muti16(v, n) {
+  var temp = v;
+  for (var i = 0; i < n; i++) {
+    temp *= 16;
+  }
+  return temp;
+}
+
+// 过滤所有特殊字符
+export function stripscript(s) {
+  var pattern = new RegExp(
+    "[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？↵\r\n]"
+  );
+  var rs = "";
+  for (var i = 0; i < s.length; i++) {
+    rs = rs + s.substr(i, 1).replace(pattern, "");
+  }
+  return rs;
+}
+
+// 字符转16进制数字
+export function hex_change(v) {
+  var res;
+  switch (v) {
+    case "a":
+      res = 10;
+      break;
+    case "b":
+      res = 11;
+      break;
+    case "c":
+      res = 12;
+      break;
+    case "d":
+      res = 13;
+      break;
+    case "e":
+      res = 14;
+      break;
+    case "f":
+      res = 15;
+      break;
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+      res = Number(v);
+      break;
+    default:
+      res = 0;
+      break;
+  }
+  return res;
+}
+
+/**
  * http://www.cnblogs.com/sj521/p/5623035.html
  * 判断字符串长度
  * @param val
@@ -170,21 +258,44 @@ export function isContainChinese (val) {
   return b
 }
 
+export function encodeStringContainingChinese(str) {
+  let res = str;
+  if (!isNull(str) && isContainChinese(str)) {
+    res = encodeURI(str);
+  }
+  return res;
+}
+
 /**
  * 检测 字符串是否全是 数字
  * @param text
  * @returns {boolean}
  */
 export function isAllNum (val) {
-  let b = true
-  for (var i = 0; i < val.length; i++) {
-    let a = val.charAt(i)
-    if (isNaN(a)) {
-      b = false
-      break
-    }
+  console.log("stringTools.js isAllNum str=", str);
+  const n = Number(str);
+  if (!isNaN(n)) {
+    console.log("stringTools.js isAllNum ok");
+    return true;
   }
-  return b
+  console.log("stringTools.js isAllNum false");
+
+  return false;
+}
+
+/**
+ * https://www.cnblogs.com/mouseleo/p/12891426.html
+ * @param str
+ */
+export function regularMatchesTheNumbers(str) {
+  const num = parseFloat(str.replace(/[^\d]/g, " "));
+  console.log(
+    "stringTools.js regularMatchesTheNumbers str=",
+    str,
+    " num=",
+    num
+  );
+  return num;
 }
 
 /**
@@ -475,9 +586,24 @@ String.prototype.isEmoji = function () {
   let reg = emojiRegex(/[\u{1F601}-\u{1F64F}\u{2702}-\u{27B0}\u{1F680}-\u{1F6C0}\u{1F170}-\u{1F251}\u{1F600}-\u{1F636}\u{1F681}-\u{1F6C5}\u{1F30D}-\u{1F567}]/gu)
   const res = this.match(reg)
 
-  console.log('stringUtils.js ', this, ' 是否是  emoji=', res)
+  console.log('stringTools.js ', this, ' 是否是  emoji=', res)
   if (res && res instanceof Array && res.length > 0) {
     return true
   }
   return false
+}
+
+/**
+ * 获取 字符串长度,区分中文和英文
+ * 把双字节的替换成两个单字节的然后再获得长度
+ * 英文的长度1,中文是2,表情是5,中文标点符号是2,英文标点符号是1
+ * @param str
+ * @returns {number}
+ */
+export function getBLen(str) {
+  if (str == null) return 0;
+  if (typeof str != "string"){
+    str += "";
+  }
+  return str.replace(/[^\x00-\xff]/g,"01").length;
 }

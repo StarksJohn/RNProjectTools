@@ -6,7 +6,7 @@
 import {
   DeviceEventEmitter
 } from 'react-native'
-import *as stringUtils from './stringUtils'
+import *as stringUtils from './stringTools'
 
 /**
  * 任何地方都可调用的 发送 某个消息的 方法

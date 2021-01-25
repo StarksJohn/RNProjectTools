@@ -1,7 +1,7 @@
 import {
   Clipboard,
 } from 'react-native'
-import *as stringUtils from './stringUtils'
+import *as stringUtils from './stringTools'
 import tool from './tool'
 
 /**

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import ViewPropTypes from '../ViewPropTypes'
 import EventListener from '../../tools/EventListener'
 
-
 useAppStateListener.propTypes = {}
 
 useAppStateListener.defaultProps = {}

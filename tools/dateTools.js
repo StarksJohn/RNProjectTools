@@ -1,6 +1,7 @@
 /**
  * https://www.cnblogs.com/carekee/articles/1678041.html
  */
+import *as stringTools from './stringTools'
 
 /**
  2个 date 对象 是否相等
@@ -195,6 +196,20 @@ const splitDateStrToOb = str => {
     d: arr.length > 2 ? Number(arr[2]) : null
   }
 }
+
+/**
+ * 时间戳转成 "xxxx-xx-xx" 字符串
+ */
+const timeStampTo_xxxx_xx_xx = timeStamp => {
+  const dateObj = getDateData(new Date(timeStamp));
+  console.log(
+    "dateTools.js timeStampTo_xxxx_xx_xx timeStamp=",
+    timeStamp,
+    " dateObj=",
+    dateObj
+  );
+  return `${dateObj.y}-${dateObj.m}-${dateObj.d}`;
+};
 
 //+---------------------------------------------------
 //| 取得日期数据信息
@@ -451,6 +466,145 @@ const timeFormat = function (timestamp = this.getTime()) {
   }
 }
 
+/**
+ * 把  https://github.com/OvalMoney/react-native-fitness  库返回的 时间 字符串(2020-11-05T02:00:00Z)转成 接口需要的 时间字符串 (2020-08-21 09:00:00)
+ * https://www.cnblogs.com/sanyekui/p/13204062.html
+ * need_h_mm_s 是否需要 时分秒
+ * @type {string}
+ */
+const formatFitnessDateStrToApiDateStr = (str, need_h_mm_s = true) => {
+  if (stringTools.isNull(str)) {
+    console.log("dateTools.js formatFitnessDateStrToApiDateStr str=null");
+    return "";
+  }
+  // 数字补0操作
+  const addZero = num => {
+    return num < 10 ? "0" + num : num;
+  };
+
+  var arr = str.split("T");
+  var d = arr[0];
+  var darr = d.split("-");
+
+  var t = arr[1];
+  var tarr = t.split(".000");
+  var marr = tarr[0].split(":");
+
+  var dd =
+    parseInt(darr[0]) +
+    "-" +
+    addZero(parseInt(darr[1])) +
+    "-" +
+    addZero(parseInt(darr[2]));
+  if (need_h_mm_s) {
+    dd +=
+      " " +
+      addZero(parseInt(marr[0])) +
+      ":" +
+      addZero(parseInt(marr[1])) +
+      ":" +
+      addZero(parseInt(marr[2]));
+  }
+  // console.log('formatFitnessDateStrToDate dd=', dd)
+  return dd;
+};
+
+/**
+ * Date 对象转成 "Wed Sep 02 2020" 格式对象
+ * @param date
+ * @returns {string}
+ */
+const formatTo_enDate = date => {
+  const arr = date.toDateString().split(" ");
+  return {
+    en_day_of_the_week: arr[0],
+    en_month: arr[1],
+    day: arr[2],
+    y: arr[3]
+  };
+};
+
+/**
+ * Convert the string with the date format '2018-09-10 08:00:00' into a Date object
+ */
+const convert_xxxx_xx_xx_toDate = str => {
+  if (!str) {
+    return new Date();
+  }
+  let _str = str;
+  _str = _str.replace(/-/g, "/");
+  return new Date(_str);
+};
+
+/**
+ * 'xxx-xx-xx' to timestamp
+ */
+const xxxx_xx_xx_to_timestamp = xxxx_xx_xx => {
+  const date = convert_xxxx_xx_xx_toDate(xxxx_xx_xx);
+  const timestamp = date.getTime();
+  console.log(
+    "dateTools.js xxxx_xx_xx_to_timestamp xxxx_xx_xx=",
+    xxxx_xx_xx,
+    " timestamp=",
+    timestamp
+  );
+  return timestamp;
+};
+
+/**
+ * https://blog.csdn.net/pengpengzhou/article/details/104774480
+ * How many timestamp does the UTC time differ from the current time zone
+ * @returns {number}
+ * @constructor
+ */
+const UTC_local_offset = () => {
+  const minutes = new Date().getTimezoneOffset();
+  const timeStamp = minutes * 60 * 1000;
+  console.log("dateTools.js UTC - local offset(timeStamp):" + timeStamp);
+  return timeStamp * -1;
+};
+
+/**
+ * monday:{y: xxxx, m: xx, d: xx}
+ * sunday:{y: xxxx, m: xx, d: xx}
+ */
+const getMondayAndSunday = () => {
+  const day = new Date().getDay();
+  console.log("dateTools.js day=", day);
+  const monday = dateTools.addDayCount((day - 1) * -1);
+  console.log("dateTools.js monday=", monday);
+  const sunday = dateTools.addDayCount(7 - day);
+  console.log("dateTools.js sunday=", sunday);
+  return {
+    monday,
+    sunday
+  };
+};
+
+/**
+ *  [0-6]correspond['日', '一', '二', '三', '四', '五', '六'] According to local time, return the day of the week in a specific date, 0  means Sunday
+ */
+const getDay = () => {
+  const day = new Date().getDay();
+  console.log("dateTools.js getDay day=", day);
+  return day;
+};
+
+const english_month = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+];
+
 //现在 外部声明，这些方法 才能互相调用
 const dateTools = {
   isEqualDate, getTimestampData, timeFormat,
@@ -460,7 +614,7 @@ const dateTools = {
   daysBetween, getDateDataWithoutZero,
   splitDateStrToOb, compareTwoDateData,
   datePart, allocDate, dayTimeStamp,
-  intervalTime, formatTimeStamp, getLeftStamp
+  intervalTime, formatTimeStamp, getLeftStamp,timeStampTo_xxxx_xx_xx,formatFitnessDateStrToApiDateStr,formatTo_enDate,convert_xxxx_xx_xx_toDate,xxxx_xx_xx_to_timestamp,UTC_local_offset,getMondayAndSunday,getDay
 }
 
 export default dateTools

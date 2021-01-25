@@ -1,72 +1,110 @@
 /**
- * 网络请求
+ * Network request
  */
 import { Platform } from 'react-native'
-import *as netwrokCode from './netwrokCode'
+import * as netwrokCode from './netwrokCode'
 import tool from '../tools/tool'
+import * as stringTools from '../tools/stringTools'
 
 export const CONTENT_TYPE_JSON = 'application/json'
 export const CONTENT_TYPE_FORM = 'application/x-www-form-urlencoded'
+export const multipart_form_data = 'multipart/form-data'
+
 const isIos = Platform.OS === 'ios'
 export const optionParams = {
-  timeoutMs: 10000,//超时时间 毫秒
+  timeoutMs: 10000, // Timeout MS
   token: null,
-  authorizationCode: null,//token
+  authorizationCode: null// token
 }
 
-//构造函数
+export const sslPinning = {
+  certs: ['cxa'] // your certificates name (without extension), for example cert1.cer, cert2.cer
+}
+
+export const commonParams = () => {
+  // const auth = store.getState().Auth || {}
+
+  return {
+    // model: stringTools.encodeStringContainingChinese(gDeviceInfo.model),
+    // appVersion: stringTools.encodeStringContainingChinese(gDeviceInfo.appVersion),
+    // brand: stringTools.encodeStringContainingChinese(gDeviceInfo.brand),
+    // mac: gDeviceInfo.mac,
+    platform: Platform.OS,
+    // UniqueID: gDeviceInfo.UniqueID,
+    // systemVersion: gDeviceInfo.systemVersion,
+    // ip: gDeviceInfo.ip,
+    // deviceId: gDeviceInfo.deviceId,
+    // manufacturer: stringTools.encodeStringContainingChinese(gDeviceInfo.manufacturer),
+    // androidid: gDeviceInfo.androidid,
+    // userAgent: stringTools.encodeStringContainingChinese(gDeviceInfo.userAgent),
+    // carrier: stringTools.encodeStringContainingChinese(gDeviceInfo.carrier),
+    // 'X-Api-Key': auth.access_token,
+    'Content-Type': CONTENT_TYPE_JSON,
+    Accept: 'application/json; charset=utf-8',
+    'Access-Control-Allow-Origin': '*',
+    e_platform: 'mobile'
+  }
+}
+
 const HttpManager = function () {
-  console.log('HttpManager construct ',)
+  console.log('HttpManager construct ')
   this.init()
 }
 
 HttpManager.prototype.init = async function () {
-  console.log('HttpManager init ',)
+  console.log('HttpManager init ')
 
   this.optionParams = optionParams
 
   /**
-   * 格式化json请求参数
+   * Format JSON request parameters
    */
   this.formParamsJson = (method, params, headers) => {
-    const body = JSON.stringify(params)
-    const req = {
+    // const body = /* headers['Content-Type'].indexOf('multipart/form-data') !== 0 ? */  // : params
+
+    return {
       method: method,
-      headers: new Headers({
-        'Content-Type': CONTENT_TYPE_JSON,
-        ...(headers || {})
-      }),
-      body
+      // headers: new Headers({
+      //   'Content-Type': CONTENT_TYPE_JSON,
+      //   Accept: 'application/json; charset=utf-8',
+      //   'Access-Control-Allow-Origin': '*',
+      //   e_platform: 'mobile',
+      //   ...(headers || {})
+      // }),
+      headers,
+      body: JSON.stringify(params)
     }
-    return req
   }
 
   /**
-   * 格式化表单请求参数
+   * Format form request parameters
    */
   this.formParams = (method, params, headers) => {
     const str = []
-    for (let p in params) {
+    for (const p in params) {
       str.push(encodeURIComponent(p) + '=' + encodeURIComponent(params[p]))
     }
     let body = null
     if (str.length > 0) {
       body = str.join('&')
     }
-    const req = {
+    return {
       method: method,
-      headers: new Headers({
-          'Content-Type': CONTENT_TYPE_FORM,
-          ...(headers || {})
-        }
-      ),
+      // headers: new Headers({
+      //   'Content-Type': CONTENT_TYPE_JSON,
+      //   Accept: 'application/json; charset=utf-8',
+      //   'Access-Control-Allow-Origin': '*',
+      //   e_platform: 'mobile',
+      //   ...(headers || {})
+      // }
+      // ),
+      headers,
       body
     }
-    return req
   }
 
   /**
-   * 超时管理
+   * Overtime management
    */
   this.requestWithTimeout = (ms, promise, text) => {
     // console.log('requestWithTimeout base=', base)
@@ -74,7 +112,7 @@ HttpManager.prototype.init = async function () {
       const timeoutId = setTimeout(() => {
         resolve({
           status: netwrokCode.NETWORK_TIMEOUT,
-          message: '网络超时'
+          message: 'Network Timeout'
         })
       }, ms)
       promise.then(
@@ -95,37 +133,28 @@ HttpManager.prototype.init = async function () {
   }
 
   /**
-   * 发起网络请求
-   * @param url 请求url
-   * @param method 请求方式
-   * @param params 请求参数
-   * @param json 是否需要json格式的参数请求
-   * @param header 外加头
-   * @param text 是否text返回，默认false，json格式返回 ；base=true时 直接返回的是 字符串
-   * @param timeoutMs 超时
+   * Initiate network request
+   * @param url
+   * @param method
+   * @param params
+   * @param json ：need a parameter request in JSON format
+   * @param header
+   * @param text ，default json  ；text=true, return html string
+   * @param timeoutMs
    * @return {Promise.<*>}
    */
-  this.netFetch = async ({ url, method = 'POST', params = {}, json = true, header = {}, text = false, timeoutMs = this.optionParams.timeoutMs, token, commonParams/*通用参数*/ = {} }) => {
+  this.netFetch = async ({ url, method = 'POST', params = {}, json = true, header = {}, text = false, timeoutMs = this.optionParams.timeoutMs }) => {
+    const headers = Object.assign(commonParams(), header)
 
-    const headers = Object.assign({}, commonParams, header)
-
-    let requestParams
-    if (method === 'POST') {//post
+    let requestParams, body
+    if (method === 'POST' || method === 'PUT') { // post | PUT
       if (json) {
         requestParams = this.formParamsJson(method, params, headers)
-        // commonParams && Object.keys(commonParams).map(
-        //   (value, index, array) => {
-        //     if (index === 0) {
-        //       url += `?${value}=${commonParams[value]}`
-        //     } else {
-        //       url += `&${value}=${commonParams[value]}`
-        //     }
-        //   }
-        // )
       } else {
         requestParams = this.formParams(method, params, headers)
       }
-    } else {//get
+      body = requestParams.body
+    } else { // get
       requestParams = this.formParams(method, params, headers)
       if (requestParams.body) {
         url += `?${requestParams.body}`
@@ -133,45 +162,93 @@ HttpManager.prototype.init = async function () {
       delete requestParams.body
     }
 
-    // console.log('\n 请求url: ', url)
-    // console.log('请求参数 params: ', params)
-    // console.log('请求 header: ', requestParams)
-    // console.log('请求参数 timeoutMs: ', timeoutMs)
+    console.log('HttpManager url: ', url)
+    console.log('HttpManager params: ', params)
+    console.log('HttpManager requestParams: ', requestParams)
+    // console.log('HttpManager body: ', body)
 
-    const [err, response] = await tool.to(this.requestWithTimeout(timeoutMs, fetch(url, requestParams), text))
-    // console.log('url=', url, '  的返回参数 response= ', response)
+    // console.log('HttpManager timeoutMs: ', timeoutMs)
 
-    if (text) {//是否text返回,默认false
-      console.log()
-      return Promise.resolve({
-        data: response,/*返回字符串时 不能 给data 赋值为对象，只能给data 赋值为 字符串， */
-        code: 0
-      })
-    } else {
-      if (err || response instanceof Error || response.status !== netwrokCode.SUCCESS) {
-        console.log('HttpManager.js err=', err)
-        console.log('HttpManager.js response=', response)
+    // const [err, response] = await tool.to(this.requestWithTimeout(timeoutMs, fetch(url, requestParams), text))
+    // console.log('HttpManager url=', url, '  requestWithTimeout response= ', response)
 
-        if (response instanceof Error) {
-          return Promise.reject(response)
-        } else {
-          return Promise.reject({ ...response, totalUrl: url, header: requestParams })
+    const [err, response] = await tool.to(fetch(url, {
+      method: method,
+      timeoutInterval: 10 * 1000, // milliseconds
+      body,
+      // your certificates array (needed only in android) ios will pick it automatically
+      // sslPinning: sslPinning,
+      headers: requestParams.headers
+    }))
+    if (response) {
+      console.log('HttpManager url=', url, ' \n fetch response= ', response)
+      if (text) {
+        return Promise.resolve(response.text())
+      } else {
+        if (response instanceof Error || response.status !== netwrokCode.SUCCESS) {
+          console.log('HttpManager.js response instanceof Error || response.status !== netwrokCode.SUCCESS err=', err)
+
+          if (response instanceof Error) {
+            console.log('HttpManager.js response instanceof Error ')
+            return Promise.reject(response)
+          } else {
+            const [err_responseJson, responseJson] = await tool.to(response.json())// response.status !== netwrokCode.SUCCESS
+            console.log('HttpManager.js response.status !== netwrokCode.SUCCESS response.status=', response.status, ' responseJson=', responseJson)
+            return Promise.reject({ responseJson, totalUrl: url, header: requestParams })
+          }
+        } else { //
+          const [err_responseJson, responseJson] = await tool.to(response.json())// Serialized the return value
+          if (err_responseJson || !responseJson) {
+            console.log('HttpManager.js Failed to serialize return value responseJson=', responseJson)
+            return Promise.reject({ responseJson, totalUrl: url, header: requestParams })
+          } else {
+            // console.log('After the returned parameters are serialized=: ', responseJson)
+            if (response.status === 200) { // fetch success
+              console.log('HttpManager fetch success responseJson=', responseJson)
+              return Promise.resolve({ responseJson, totalUrl: url, header: requestParams })
+            }
+          }
         }
       }
-      const [err, responseJson] = await tool.to(response.json())//序列化返回值
-      if (err || !responseJson) {
-        console.log('HttpManager.js 序列化返回值失败 response=', response)
-        return Promise.reject({ ...responseJson, totalUrl: url, header: requestParams })
-      }
-      // console.log('返回参数序列化后=: ', responseJson)
-      if (response.status === 200) {//最终 接口成功
-        return Promise.resolve({ ...responseJson, totalUrl: url, header: requestParams })
-      }
+    } else {
+      console.log(`HttpManager fetch error= ${err}`)
+      return Promise.reject({ err, totalUrl: url, header: requestParams })
     }
+
+    // if (text) { //
+    //   console.log()
+    //   // return Promise.resolve({
+    //   //   data: response,/* */
+    //   //   code: 0
+    //   // })
+    // } else {
+    //   if (err || response instanceof Error || response.status !== netwrokCode.SUCCESS) {
+    //     console.log('HttpManager.js err=', err)
+    //     console.log('HttpManager.js response=', response)
+    //
+    //     if (response instanceof Error) {
+    //       console.log('HttpManager.js response instanceof Error ')
+    //       return Promise.reject(response)
+    //     } else if (response) {
+    //       const [err, responseJson] = await tool.to(response.json())// Serialized the return value
+    //       console.log('HttpManager.js response.status=', response.status, ' responseJson=', responseJson)
+    //       return Promise.reject({ responseJson, totalUrl: url, header: requestParams })
+    //     }
+    //   }
+    //   const [err, responseJson] = await tool.to(response.json())// Serialized the return value
+    //   if (err || !responseJson) {
+    //     console.log('HttpManager.js Failed to serialize return value response=', response)
+    //     return Promise.reject({ responseJson, totalUrl: url, header: requestParams })
+    //   }
+    //   // console.log('After the returned parameters are serialized=: ', responseJson)
+    //   if (response.status === 200) { //
+    //     return Promise.resolve({ responseJson, totalUrl: url, header: requestParams })
+    //   }
+    // }
   }
 }
 
-const singleton = (function () {
+const singleton = function () {
   let instance
   return function () {
     if (!instance) {
@@ -179,6 +256,6 @@ const singleton = (function () {
     }
     return instance
   }
-})
+}
 
 export default new singleton()()
