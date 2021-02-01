@@ -3,8 +3,8 @@ import { Platform } from 'react-native'
 
 /**
  * https://juejin.im/post/5ce66c26e51d4555fd20a2a0
- * （1）通过对 Text style 的检测，拿到对应自定义字体
- （2）过滤掉 Text style 中的 fontWeight fontStyle 得到新的 style 对象
+ * （1）通过对 Text styles 的检测，拿到对应自定义字体
+ （2）过滤掉 Text styles 中的 fontWeight fontStyle 得到新的 styles 对象
  */
 // 声明项目中用到的所有字体配置。fontWeight参考 https://reactnative.cn/docs/text/
 const fonts = {

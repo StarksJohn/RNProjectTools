@@ -20,11 +20,11 @@ const baseT = ({ style, ...props }) => {
   const { hasPaddingLeftAndRight } = props
   const _style = style
 
-  // Text style
+  // Text styles
   let resolvedStyle = StyleSheet.flatten(_style) || {}
   // 根据 fontWeight 找到 fontFamily
   resolvedStyle = fontWeightToFontFamily(resolvedStyle)
-  // 过滤掉 Text style 中的 fontWeight fontStyle 得到新的 style 对象
+  // 过滤掉 Text styles 中的 fontWeight fontStyle 得到新的 styles 对象
   const newStyle = objTools.omit({ ...resolvedStyle }, ['fontStyle', 'fontWeight'])//
 
   // 外部设置 lineHeight 时 不建议 带上 gScaleSize，因 字体大小没缩放

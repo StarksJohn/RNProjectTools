@@ -412,8 +412,8 @@ export default class BaseFlatList extends PureComponent {
         //   }}
         //   >
         //     {footerEmptyDataComponent ? footerEmptyDataComponent : (
-        //       <View style={styles.footerContainer}>
-        //         <Text style={styles.footerText}>{footerEmptyDataText}</Text>
+        //       <View styles={styles.footerContainer}>
+        //         <Text styles={styles.footerText}>{footerEmptyDataText}</Text>
         //       </View>
         //     )}
         //   </TouchableOpacity>
@@ -516,7 +516,7 @@ export default class BaseFlatList extends PureComponent {
           >
             {/* 子节点没效果 */}
             {/* <ImageBackground source={imgSource.} */}
-            {/*                 style={{ width: '100%', height: '100%' }}> */}
+            {/*                 styles={{ width: '100%', height: '100%' }}> */}
             {/* </ImageBackground> */}
           </RefreshControl>
         }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import ViewPropTypes from '../ViewPropTypes'
 import EventListener from '../../tools/EventListener'
+import constant from '../../constant/constant'
 
 useAppStateListener.propTypes = {}
 
@@ -44,7 +45,7 @@ export default function useAppStateListener (props) {
       let eventListener = null
       if (onChange) {
         eventListener = new EventListener({
-          eventName: gConstant.event.appStateChanged,
+          eventName: constant.event.appStateChanged,
           eventCallback: _onChange
         })
       }

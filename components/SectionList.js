@@ -449,7 +449,7 @@ export default class BaseSectionList extends PureComponent {
   //       (self) => {
   //         return self.state.show && this.props.showScrollToTop && (
   //           <TouchableOpacity
-  //             style={{
+  //             styles={{
   //               backgroundColor: 'transparent',
   //               position: 'absolute',
   //               right: gScaleSize(20), zIndex: 2,
@@ -464,7 +464,7 @@ export default class BaseSectionList extends PureComponent {
   //
   //               self.setState({ show: false })
   //             }}>
-  //             <Image source={imgSource.icon_zhiding} style={{ width: gScaleSize(48), height: gScaleSize(48) }} />
+  //             <Image source={imgSource.icon_zhiding} styles={{ width: gScaleSize(48), height: gScaleSize(48) }} />
   //           </TouchableOpacity>
   //         )
   //
@@ -532,7 +532,7 @@ export default class BaseSectionList extends PureComponent {
         renderSectionHeader={this._sectionComp} //区头
         renderItem={this._renderItem}   //cell
         sections={sections}     //数据源
-        // ItemSeparatorComponent={() => <View style={{ backgroundColor: 'red', height: 1 }}></View>}  //分割线
+        // ItemSeparatorComponent={() => <View styles={{ backgroundColor: 'red', height: 1 }}></View>}  //分割线
         stickySectionHeadersEnabled={true}  //设置区头是否悬浮在屏幕顶部,默认是true
         initialNumToRender={initialNumToRender} //指定一开始渲染的元素数量，最好刚刚够填满一个屏幕，这样保证了用最短的时间给用户呈现可见的内容
         onEndReachedThreshold={0.5}  //0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。

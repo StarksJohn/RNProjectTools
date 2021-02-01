@@ -367,7 +367,7 @@ export default class BaseFlatList extends PureComponent {
                 this.scrollToTop(true)
                 self.setState({ show: false })
               }}>
-              {/*<Image source={imgSource.icon_zhiding} style={{ width: gScaleSize(36), height: gScaleSize(36) }} />*/}
+              {/*<Image source={imgSource.icon_zhiding} styles={{ width: gScaleSize(36), height: gScaleSize(36) }} />*/}
             </TouchableOpacity>
           )
 
@@ -433,8 +433,8 @@ export default class BaseFlatList extends PureComponent {
         //   }}
         //   >
         //     {footerEmptyDataComponent ? footerEmptyDataComponent : (
-        //       <View style={styles.footerContainer}>
-        //         <Text style={styles.footerText}>{footerEmptyDataText}</Text>
+        //       <View styles={styles.footerContainer}>
+        //         <Text styles={styles.footerText}>{footerEmptyDataText}</Text>
         //       </View>
         //     )}
         //   </TouchableOpacity>
@@ -535,7 +535,7 @@ export default class BaseFlatList extends PureComponent {
             onRefresh={this.refresh}>
             {/*子节点没效果*/}
             {/*<ImageBackground source={imgSource.}*/}
-            {/*                 style={{ width: '100%', height: '100%' }}>*/}
+            {/*                 styles={{ width: '100%', height: '100%' }}>*/}
             {/*</ImageBackground>*/}
           </RefreshControl>
         }

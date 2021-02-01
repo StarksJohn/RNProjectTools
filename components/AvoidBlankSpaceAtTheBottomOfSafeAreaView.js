@@ -3,7 +3,7 @@ import { Image, View, SafeAreaView, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import PropTypes from 'prop-types'
-import appStyle from '../style/appStyle'
+import appStyle from '../styles/appStyle'
 
 const { dp } = appStyle
 

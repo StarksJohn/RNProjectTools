@@ -6,15 +6,15 @@ import ViewPropTypes from './ViewPropTypes'
 import PureComponent from './PureComponent'
 import _SearchInput from 'teaset/components/SearchInput/SearchInput'
 import { dp } from '../tools/screenTools'
-import appStyle from '../style/appStyle'
+import appStyle from '../styles/appStyle'
 
 // 带 右侧 X按钮的 自定义 搜索控件，为了点击外部区域收起键盘，外层用 可用 Button 包起来
 export default class SearchInput extends PureComponent {
   // 定义props类型
   static propTypes = {
-    style: ViewPropTypes.style, // The outermost style of the current component
+    style: ViewPropTypes.style, // The outermost styles of the current component
     name: PropTypes.bool,
-    searchInputStyle: ViewPropTypes.style, // teaset 里的 SearchInput 控件的 style
+    searchInputStyle: ViewPropTypes.style, // teaset 里的 SearchInput 控件的 styles
     inputStyle: TextInput.propTypes.style, // RN 基础控件 TextInput 的style ,输入的内容 和 placeholder的 样式 通用
     iconSize: PropTypes.number/* 左侧🔍 icon的 大小，设置0可隐藏 */,
     placeholder: PropTypes.string,
@@ -180,14 +180,14 @@ export default class SearchInput extends PureComponent {
         {/* X按钮 */}
         {/* { */}
         {/*  (isFocused || (!stringTools.isNull(self.state.searcValue))) && showXBt ? */}
-        {/*    <Button style={[styles._xBtStyle, xBtStyle]} onPress={() => { */}
+        {/*    <Button styles={[styles._xBtStyle, xBtStyle]} onPress={() => { */}
         {/*      self.setState({ */}
         {/*        searcValue: '', */}
         {/*      }, () => { */}
         {/*        onChangeText && onChangeText('') */}
         {/*      }) */}
         {/*    }}> */}
-        {/*      <Image style={{ width: dp(24), height: dp(24) }} source={imgSource.deleteIcon} /> */}
+        {/*      <Image styles={{ width: dp(24), height: dp(24) }} source={imgSource.deleteIcon} /> */}
         {/*    </Button> */}
         {/*    : null */}
         {/* } */}

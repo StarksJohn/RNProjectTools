@@ -73,10 +73,10 @@ const _style = {
   blueText: '#0275D8',
   grayText: '#666666',
   grayBorder: '#9E9E9E',
-  //二级页面的 statusBar的 style,直接隐藏 node_modules/react-native-navbar/index.js 里的 statusBar
+  //二级页面的 statusBar的 styles,直接隐藏 node_modules/react-native-navbar/index.js 里的 statusBar
   // twoLevelPageStatusBar: {
   //   tintColor: 'red', animated: true, height: statusBarH,
-  //   style: 'dark-content', hidden: true, translucent: true
+  //   styles: 'dark-content', hidden: true, translucent: true
   // },
   animatedInput: {
     width: pageCellW, // dp(311),

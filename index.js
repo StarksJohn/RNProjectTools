@@ -6,7 +6,7 @@ import EventListener from './tools/EventListener'
 import objUtils from './tools/objUtils'
 import *as stringTools from './tools/stringTools'
 import *as screenTools from './tools/screenTools'
-import appStyle from './style/appStyle'
+import appStyle from './styles/appStyle'
 import ViewPropTypes from './components/ViewPropTypes'
 import Text from './components/base/BaseText/Text'
 import Button from './components/Button'
@@ -36,7 +36,6 @@ import md5 from './tools/blueimp_md5'
 import ScrollView from './components/ScrollView'
 import useAppStateListener from './components/CustomHooks/useAppStateListener'
 import useAndroidBackHandler from './components/CustomHooks/useAndroidBackHandler'
-import useNavFocusListener from './components/CustomHooks/useNavFocusListener'
 import useSubscribeKeyboard from './components/CustomHooks/useSubscribeKeyboard'
 
 const RNProjectTools = {
@@ -72,7 +71,7 @@ const RNProjectTools = {
   VerificationCodeBt,
   netwrokCode,
   FlatList,
-  clipboardTools, useAppStateListener, useSubscribeKeyboard, useNavFocusListener, useAndroidBackHandler
+  clipboardTools, useAppStateListener, useSubscribeKeyboard, useAndroidBackHandler
 }
 
 module.exports = RNProjectTools

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
  * native-base 的 Button 的坑：
  * 1 如果 子元素是 Text，Text的 style会被 Button 自动加上 paddingLeft: 16, paddingRight: 16
  * 2 默认 自带边框，可通过 props里 设置 bordered={true}，style里设置 borderColor:'transparent' 来 隐藏 边框
- * 3 外部没传 height 时 ，native-base 会 自动设置 height=45，不管 给 Button.style 设置 paddingTop 或 paddingBottom 都没用， 故 做了处理
+ * 3 外部没传 height 时 ，native-base 会 自动设置 height=45，不管 给 Button.styles 设置 paddingTop 或 paddingBottom 都没用， 故 做了处理
  * 4 如果遇到设置了高度但是还是填充满了父节点的高度，可外部抱一个view，把 view的 高度设置成按钮想要的高度
  *
  * 优点：

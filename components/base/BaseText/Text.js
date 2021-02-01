@@ -2,11 +2,11 @@
  * https://juejin.im/post/5ce66c26e51d4555fd20a2a0
  * 避免 安卓 改变了手机系统的字体样式后，App中的字体样式也会改变
  * 如果 不同 fontSize 的 Text 嵌套 想底部对齐，可参考
- *  <Text style={{
+ *  <Text styles={{
           fontSize: gScaleText(16), color: '#EB475C', fontFamily: 'PingFangSC-Semibold', height: gScaleSize(33),
         }}>¥
  <Text
- style={{
+ styles={{
           fontSize: gScaleText(30),
               color: '#EB475C',fontFamily: 'PingFangSC-Semibold'
             }}>{item.price}</Text>
@@ -30,8 +30,8 @@ Text.render = function (...args) {
   const originText = TextRender.apply(this, args)
   // const { selectable } = originText.props 不注释就报错
   // if (!selectable) {
-  //   let newprops = objUtils.omit(originText.props, ['style', 'children'])
-  //   return <BaseText {...newprops} style={originText.props.style}>
+  //   let newprops = objUtils.omit(originText.props, ['styles', 'children'])
+  //   return <BaseText {...newprops} styles={originText.props.styles}>
   //     {originText.props.children}
   //   </BaseText>
   // } else {
@@ -43,11 +43,11 @@ const baseT = ({ style, ...props }) => {
   const { hasPaddingLeftAndRight } = props
   let _style = style
 
-  // Text style
+  // Text styles
   const resolvedStyle = StyleSheet.flatten(_style) || {}
-  // 通过对 Text style 的检测，拿到对应自定义字体
+  // 通过对 Text styles 的检测，拿到对应自定义字体
   const fontFamily = getFontFamily(resolvedStyle.fontFamily, resolvedStyle)
-  // 过滤掉 Text style 中的 fontWeight fontStyle 得到新的 style 对象
+  // 过滤掉 Text styles 中的 fontWeight fontStyle 得到新的 styles 对象
   const newStyle = objUtils.omit({ ...resolvedStyle, fontFamily }, ['fontStyle'])//
 
   //外部设置 lineHeight 时 不建议 带上 gScaleSize，因 字体大小没缩放
