@@ -4,9 +4,9 @@ import baseTimer from './tools/baseTimer'
 import arrayUtils from './tools/arrayTools'
 import EventListener from './tools/EventListener'
 import objUtils from './tools/objUtils'
-import *as stringUtils from './tools/stringTools'
-import *as ScreenUtils from './style/ScreenUtils'
-import styles from './style/styles'
+import *as stringTools from './tools/stringTools'
+import *as screenTools from './style/screenTools'
+import appStyle from './style/appStyle'
 import ViewPropTypes from './components/ViewPropTypes'
 import Text from './components/base/BaseText/Text'
 import Button from './components/Button'
@@ -49,11 +49,11 @@ const RNProjectTools = {
   FullScreenLoading,
   objUtils,
   Banner,
-  stringUtils,
+  stringTools,
   GridView,
-  ScreenUtils,
+  screenTools,
   Math,
-  styles,
+  appStyle,
   ImgBt,
   ViewPropTypes,
   md5,

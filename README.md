@@ -2,4 +2,4 @@
 
 #Every time you push, the main project can be updated to the code with npm i --f RNProjectTools or yarn upgrade RNProjectTools,
 
-  
+# "RNProjectTools": "git+https://github.com/cham1985/RNProjectTools.git",
