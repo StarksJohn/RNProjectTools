@@ -2,7 +2,6 @@
  */
 import React, { StyleSheet, Dimensions, PixelRatio, Platform, StatusBar, Image } from 'react-native'
 import { ifIphoneX, dp } from '../tools/screenTools'
-import { statusBarH } from './styles'
 
 const appThemeColor = '#9E1F63'
 const pageBackgroundColor = '#F9F9F9'
@@ -21,7 +20,7 @@ const _style = {
   navBarH,
   white,
   //没有 NavBar 控件时 页面顶部的 paddingTop
-  fullScreenPaddingTop: ifIphoneX({ paddingTop: dp(statusBarH) }, { paddingTop: dp(statusBarH) }, { paddingTop: dp(statusBarH) }),
+  // fullScreenPaddingTop: ifIphoneX({ paddingTop: dp(statusBarH) }, { paddingTop: dp(statusBarH) }, { paddingTop: dp(statusBarH) }),
   statusBarH: Platform.select({
     ios: ifIphoneX(44, 20),
     android: StatusBar.currentHeight
@@ -75,10 +74,10 @@ const _style = {
   grayText: '#666666',
   grayBorder: '#9E9E9E',
   //二级页面的 statusBar的 style,直接隐藏 node_modules/react-native-navbar/index.js 里的 statusBar
-  twoLevelPageStatusBar: {
-    tintColor: 'red', animated: true, height: statusBarH,
-    style: 'dark-content', hidden: true, translucent: true
-  },
+  // twoLevelPageStatusBar: {
+  //   tintColor: 'red', animated: true, height: statusBarH,
+  //   style: 'dark-content', hidden: true, translucent: true
+  // },
   animatedInput: {
     width: pageCellW, // dp(311),
     height: dp(56),
