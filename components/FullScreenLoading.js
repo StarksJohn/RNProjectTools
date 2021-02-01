@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import { Toast } from 'teaset'
 import Text from './base/BaseText/Text'
-import { scaleSize } from '../style/ScreenUtils'
+import { dp } from '../tools/screenTools'
 import imgSource from '../res/imgs/imgSource'
 
 let loadingKey = null
@@ -26,14 +26,14 @@ export default {
    */
   showLoading (p) {
     p = {
-      ...{ icon: <Image style={{ width: scaleSize(50), height: scaleSize(50) }} source={imgSource.loading} />, text: '加载中...' },
+      ...{ icon: <Image style={{ width: dp(50), height: dp(50) }} source={imgSource.loading} />, text: '加载中...' },
       ...p,
     }
     const { icon, text } = p
     loadingKey = Toast.show({
       style: {
-        borderRadius: scaleSize(10), paddingLeft: scaleSize(30),
-        paddingRight: scaleSize(30),
+        borderRadius: dp(10), paddingLeft: dp(30),
+        paddingRight: dp(30),
         paddingTop: 0,
         paddingBottom: 0,
       },
