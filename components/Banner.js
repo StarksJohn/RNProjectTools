@@ -4,11 +4,7 @@ import PropTypes from 'prop-types'
 import { Image, StyleSheet, ImageBackground, View } from 'react-native'
 import ViewPropTypes from './ViewPropTypes'
 import PureComponent from './PureComponent'
-import Text from './base/BaseText/Text'
-import Button from './Button'
 import { Carousel } from 'teaset'
-import EventListener from '../tools/EventListener'
-import styles from '../style/styles'
 import tool from '../tools/tool'
 
 /**
