@@ -37,6 +37,7 @@ import ScrollView from './components/ScrollView'
 import useAppStateListener from './components/CustomHooks/useAppStateListener'
 import useAndroidBackHandler from './components/CustomHooks/useAndroidBackHandler'
 import useSubscribeKeyboard from './components/CustomHooks/useSubscribeKeyboard'
+import asyncStorage from './tools/asyncStorage'
 
 const RNProjectTools = {
   baseTimer,
@@ -71,7 +72,7 @@ const RNProjectTools = {
   VerificationCodeBt,
   netwrokCode,
   FlatList,
-  clipboardTools, useAppStateListener, useSubscribeKeyboard, useAndroidBackHandler
+  clipboardTools, useAppStateListener, useSubscribeKeyboard, useAndroidBackHandler,asyncStorage
 }
 
 module.exports = RNProjectTools
