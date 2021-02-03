@@ -11,7 +11,7 @@ import *as stringUtils from './stringTools'
 /**
  * 任何地方都可调用的 发送 某个消息的 方法
  */
-global.gSendEvent = function sendEvent (eventName, extraInfo = {}) {
+export const sendEvent =  (eventName, extraInfo = {}) =>{
   DeviceEventEmitter.emit(eventName, { ...extraInfo, eventName })
 }
 
