@@ -14,12 +14,13 @@
   "license": "MIT",
   "homepage": "https://github.com/cham1985/RNProjectTools.git",
   "dependencies": {
+    "@react-native-community/async-storage": "^1.9.0",
+    "lodash": "^4.17.20",
     "native-base": "^2.13.13",
     "prop-types": "^15.7.2",
     "react": "~16.13.1",
     "react-native": "~0.63.2",
     "react-redux": "^7.2.0",
-    "teaset": "https://github.com/cham1985/teaset.git",
-    "@react-native-community/async-storage": "^1.9.0"
+    "teaset": "https://github.com/cham1985/teaset.git"
   }
 }
