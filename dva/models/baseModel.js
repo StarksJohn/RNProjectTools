@@ -9,7 +9,7 @@ export default {
   baseSubscriptions:{
     //初始化缓存
     initCache:({dispatch, history,attributesToBeCached}) => {
-      console.log('baseModel.js subscriptions loadData dispatch=', dispatch);
+      console.log('baseModel.js subscriptions initCache dispatch=', dispatch);
       _.forEach(attributesToBeCached, async (key) => {
         console.log('baseModel.js initCache forEach key=', key);
         const [e_value, value] = await tool.to(asyncStorage.getItem(key));
