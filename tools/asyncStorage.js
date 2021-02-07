@@ -39,8 +39,8 @@ const getItem = async key => {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
       // value previously stored
-      console.log('asyncStorage.js getItem成功, key=', key, '  value=', JSON.parse(value))
-      return Promise.resolve(JSON.parse(value));
+      console.log('asyncStorage.js getItem成功, key=', key, '  value=', value)
+      return Promise.resolve(value);
     } else {
       console.log(`未找到 key=${key}的 缓存`)
       return Promise.reject(null);
