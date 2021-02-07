@@ -89,7 +89,7 @@ export default {
   },
 
   /**
-   * 缓存 initState 的某个属性
+   * 缓存 initState 的某个属性,如果这个属性再 attributesToBeCached 里注册了的话
    * @param key
    */
    cacheAnAttributeOfInitState : ({key, value,attributesToBeCached}) => {
