@@ -1,5 +1,7 @@
 import { Platform } from 'react-native'
 import asyncStorage from './asyncStorage'
+import _ from 'lodash';
+
 
 export default {
   /**
