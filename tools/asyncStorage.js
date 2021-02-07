@@ -9,12 +9,21 @@ import *as stringTools from './stringTools'
 const setItem = async (key, value) => {
   try {
     // console.log('setItem key=', key, ' value=', value)
-    if (typeof value !== 'string' || stringTools.isNull(value)) {
+    if ( stringTools.isNull(value)) {
       // alert('setItem 参数不是 str 类型,value=', value)
       // console.log('setItem 参数不是 str 类型,value=', value, ' key=', key)
-      return Promise.reject('setItem 参数不是 str 类型');
+      console.log('asyncStorage.js setItem key=',key,' value不存在')
+      return Promise.reject('setItem value不存在');
     }
-    return await AsyncStorage.setItem(key, value);
+    if (typeof value !== 'string') {
+      console.log('asyncStorage.js setItem value !== string')
+      let v=JSON.stringify(value)
+      console.log('asyncStorage.js setItem key=',key,' value=',v)
+      return await AsyncStorage.setItem(key, value);
+    }else{
+      console.log('asyncStorage.js setItem key=',key,' value=',value)
+      return await AsyncStorage.setItem(key, value);
+    }
   } catch (e) {
     // saving error
     throw new Error(`缓存 key=${key}的 失败`);
@@ -30,10 +39,10 @@ const getItem = async key => {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
       // value previously stored
-      // console.log('AsyncStorage.getItem成功, key=', key, '&value=', value)
-      return Promise.resolve(value);
+      console.log('asyncStorage.js getItem成功, key=', key, '  value=', JSON.parse(value))
+      return Promise.resolve(JSON.parse(value));
     } else {
-      // console.log(`未找到 key=${key}的 缓存`)
+      console.log(`未找到 key=${key}的 缓存`)
       return Promise.reject(null);
     }
   } catch (e) {
