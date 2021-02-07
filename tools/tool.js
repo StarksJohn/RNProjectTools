@@ -1,4 +1,5 @@
 import { Platform } from 'react-native'
+import asyncStorage from './asyncStorage'
 
 export default {
   /**
@@ -84,4 +85,16 @@ export default {
     }
     return false;
   },
+
+  /**
+   * 缓存 initState 的某个属性
+   * @param key
+   */
+   cacheAnAttributeOfInitState : ({key, value,attributesToBeCached}) => {
+    let index = _.indexOf(attributesToBeCached, key);
+    if (index !== -1) {
+      console.log('tool.js 开始缓存 initState.', key, ' 的值=', value);
+      asyncStorage.setItem(key, value).then();
+    }
+  }
 }
