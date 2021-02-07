@@ -38,6 +38,7 @@ import useAppStateListener from './components/CustomHooks/useAppStateListener'
 import useAndroidBackHandler from './components/CustomHooks/useAndroidBackHandler'
 import useSubscribeKeyboard from './components/CustomHooks/useSubscribeKeyboard'
 import asyncStorage from './tools/asyncStorage'
+import baseDva from './dva/baseDva'
 
 const RNProjectTools = {
   baseTimer,
@@ -72,7 +73,7 @@ const RNProjectTools = {
   VerificationCodeBt,
   netwrokCode,
   FlatList,
-  clipboardTools, useAppStateListener, useSubscribeKeyboard, useAndroidBackHandler,asyncStorage
+  clipboardTools, useAppStateListener, useSubscribeKeyboard, useAndroidBackHandler,asyncStorage,baseDva
 }
 
 module.exports = RNProjectTools
