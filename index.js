@@ -3,7 +3,6 @@
 import baseTimer from './tools/baseTimer'
 import arrayUtils from './tools/arrayTools'
 import EventListener,{sendEvent} from './tools/EventListener'
-import objUtils from './tools/objUtils'
 import *as stringTools from './tools/stringTools'
 import *as screenTools from './tools/screenTools'
 import appStyle from './styles/appStyle'
@@ -48,7 +47,6 @@ const RNProjectTools = {
   SectionList,
   EventListener,sendEvent,
   FullScreenLoading,
-  objUtils,
   Banner,
   stringTools,
   GridView,

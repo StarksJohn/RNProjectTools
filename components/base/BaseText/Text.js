@@ -19,7 +19,7 @@ import React from 'react'
 import { StyleSheet, Platform, Text } from 'react-native'
 import getFontFamily from './getFontFamily'
 // import { Text } from 'native-base'
-import objUtils from '../../../tools/objUtils'
+import objTools from '../../../tools/objTools'
 
 /**
  * https://juejin.im/post/5ce66c26e51d4555fd20a2a0
@@ -48,7 +48,7 @@ const baseT = ({ style, ...props }) => {
   // 通过对 Text styles 的检测，拿到对应自定义字体
   const fontFamily = getFontFamily(resolvedStyle.fontFamily, resolvedStyle)
   // 过滤掉 Text styles 中的 fontWeight fontStyle 得到新的 styles 对象
-  const newStyle = objUtils.omit({ ...resolvedStyle, fontFamily }, ['fontStyle'])//
+  const newStyle = objTools.omit({ ...resolvedStyle, fontFamily }, ['fontStyle'])//
 
   //外部设置 lineHeight 时 不建议 带上 gScaleSize，因 字体大小没缩放
   if (props.numberOfLines >= 2 && !newStyle['lineHeight'] && Platform.OS === 'android') {//2 行以上在安卓上 显示有问题，必须加 lineHeight

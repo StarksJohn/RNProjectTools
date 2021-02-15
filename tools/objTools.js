@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 // 删除 obj对象里的 和 keys 数组 里 同名的 属性, 生成新的  对象
 const omit = (obj, keys) => {
   return Object.keys(obj)
@@ -53,6 +55,19 @@ const deepCopy = (obj) => {
   return result
 }
 
+const isEmpty = (value) => {
+  if (_.isNumber(value) || _.isBoolean(value)) {
+    return false
+  }
+  if (_.isNil(value)) {
+    return true
+  }
+  if (_.isString(value)) {
+    return value.length === 0
+  }
+  return _.isEmpty(value)
+}
+
 export default {
-  omit, DeepMergeNoExtraProps, deepCopy
+  omit, DeepMergeNoExtraProps, deepCopy,isEmpty
 }
