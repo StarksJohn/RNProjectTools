@@ -68,6 +68,10 @@ const isEmpty = (value) => {
   return _.isEmpty(value)
 }
 
+const isNotEmpty = (value) => {
+  return !isEmpty(value)
+}
+
 export default {
-  omit, DeepMergeNoExtraProps, deepCopy,isEmpty
+  omit, DeepMergeNoExtraProps, deepCopy,isEmpty,isNotEmpty
 }
