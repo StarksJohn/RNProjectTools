@@ -2,12 +2,16 @@
  * 通用项目需要的常量
  */
 export default Object.freeze({
-  listPageSize: 10,//列表每页请求数据数量
+  listPageSize: 10, //列表每页请求数据数量
   event: {
-    appStateChanged: 'appStateChanged',
-    executeHomeSpringBoxQueueEvent: '执行首页某个弹框任务的事件', appState: {
-      inactive: 'inactive', background: 'background', active: 'active',
-      AudioPlayerPlaying: '音频播放器开始播放', AudioPlayerStop: '音频播放器停止'
+    appStateChanged: "appStateChanged",
+    executeHomeSpringBoxQueueEvent: "执行首页某个弹框任务的事件",
+    appState: {
+      inactive: "inactive",
+      background: "background",
+      active: "active",
+      AudioPlayerPlaying: "音频播放器开始播放",
+      AudioPlayerStop: "音频播放器停止",
     },
   },
   webView: {
@@ -16,7 +20,7 @@ export default Object.freeze({
       bodyH: `var msg = {
                           bodyH: document.body.scrollHeight
                         }
-      window.ReactNativeWebView.postMessage(JSON.stringify(msg))` //获取h5的 body 的 高
-    }
-  }
-})
+      window.ReactNativeWebView.postMessage(JSON.stringify(msg))`, //获取h5的 body 的 高
+    },
+  },
+});

@@ -51,7 +51,7 @@ export const fontWeightToFontFamily = (styles = {}) => {
 }
 
 /**
- * 根据 fontWeight  在 fonts 对象里 找到 fontWeight
+ * 根据 fontWeight  在 fonts 对象里 找到 fontWeight; 弃用
  * @param baseFontFamily 字体名
  * @param styles Text组件的style
  * @returns {string}
