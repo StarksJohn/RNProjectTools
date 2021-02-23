@@ -132,7 +132,8 @@ const _style = {
     lineHeight: dp(24),
     alignSelf: 'center',
     marginBottom: dp(2)
-  }
+  },
+  safeAreaInsets:null,//由具体项目的 react-native-safe-area-context 库的 useSafeAreaInsets 获取
 }
 
 export default _style
