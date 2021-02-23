@@ -26,7 +26,7 @@ const _style = {
     android: StatusBar.currentHeight
   }),
   ipxHeader: 40,//ipx顶部偏移量
-  //ipx底部偏移量，新项目用
+  //ipx底部偏移量，以后被 safeAreaInsets.bottom  代替
   ipxBottomSpace:ifIphoneX(34, 0),
   pageBackgroundColor,
   safeAreaView: {
