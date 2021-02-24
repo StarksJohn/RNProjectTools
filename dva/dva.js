@@ -14,7 +14,7 @@ function createApp(opt) {
   console.log('dva.js createApp opt=', opt);
 
   {
-    baseModel.attributesToBeCached.concat(opt.attributesToBeCached);
+    baseModel.attributesToBeCached=baseModel.attributesToBeCached.concat(opt.attributesToBeCached);
   }
 
   app = create(opt);
