@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { View, Image, StyleSheet } from 'react-native'
 import ViewPropTypes from './ViewPropTypes'
 import PureComponent from './PureComponent'
-import Text from './base/BaseText/Text'
+import Text from './Text/Text'
 import Button from './Button'
 import TextBt from './TextBt'
 

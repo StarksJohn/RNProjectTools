@@ -5,7 +5,7 @@ import {
   Image,
 } from 'react-native'
 import { Toast } from 'teaset'
-import Text from './base/BaseText/Text'
+import Text from './Text/Text'
 import { dp } from '../tools/screenTools'
 import imgSource from '../res/imgs/imgSource'
 

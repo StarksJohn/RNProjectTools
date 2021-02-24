@@ -5,7 +5,7 @@ import { View, Image, StyleSheet } from 'react-native'
 import ViewPropTypes from './ViewPropTypes'
 import PureComponent from './PureComponent'
 import Button from './Button'
-import Text from './base/BaseText/Text'
+import Text from './Text/Text'
 
 //按钮里有个纯文本的控件
 export default class TextBt extends PureComponent {
