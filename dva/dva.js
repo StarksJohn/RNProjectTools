@@ -1,4 +1,4 @@
-import {create} from 'dva-core';
+import { create } from 'dva-core';
 
 let app;
 let store;
@@ -31,6 +31,8 @@ function createApp(opt) {
 
   dispatch = store.dispatch;
   app.dispatch = dispatch;
+  console.log('dva.js app=', app);
+
   return app;
 }
 

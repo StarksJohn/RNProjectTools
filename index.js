@@ -37,8 +37,8 @@ import useAppStateListener from "./components/CustomHooks/useAppStateListener";
 import useAndroidBackHandler from "./components/CustomHooks/useAndroidBackHandler";
 import useSubscribeKeyboard from "./components/CustomHooks/useSubscribeKeyboard";
 import asyncStorage from "./tools/asyncStorage";
-import baseDva from "./dva/baseDva";
 import objTools from "./tools/objTools";
+import dva from './dva/dva';
 
 const RNProjectTools = {
   baseTimer,
@@ -78,8 +78,8 @@ const RNProjectTools = {
   useSubscribeKeyboard,
   useAndroidBackHandler,
   asyncStorage,
-  baseDva,
   objTools,
+  dva,
 };
 
 module.exports = RNProjectTools;
