@@ -39,6 +39,9 @@ import useSubscribeKeyboard from "./components/CustomHooks/useSubscribeKeyboard"
 import asyncStorage from "./tools/asyncStorage";
 import objTools from "./tools/objTools";
 import dva from './dva/dva';
+import baseModel from './dva/baseModel';
+import models from './dva/models';
+import modelTools from './dva/modelTools';
 
 const RNProjectTools = {
   baseTimer,
@@ -80,6 +83,9 @@ const RNProjectTools = {
   asyncStorage,
   objTools,
   dva,
+  baseModel,
+  models,
+  modelTools,
 };
 
 module.exports = RNProjectTools;
