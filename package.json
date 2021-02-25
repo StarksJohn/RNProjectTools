@@ -15,24 +15,26 @@
   "homepage": "https://github.com/cham1985/RNProjectTools.git",
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
+    "@react-native-community/netinfo": "^6.0.0",
+    "dva-core": "^2.0.4",
     "lodash": "^4.17.20",
     "native-base": "^2.13.13",
     "prop-types": "^15.7.2",
     "react": "~16.13.1",
     "react-native": "~0.63.2",
+    "react-native-easy-app": "^1.7.20",
     "react-redux": "^7.2.0",
-    "teaset": "https://github.com/cham1985/teaset.git",
-    "dva-core": "^2.0.4"
+    "teaset": "https://github.com/cham1985/teaset.git"
   },
   "devDependencies": {
-     "@react-native-community/eslint-config": "^2.0.0",
-     "eslint": "^7.19.0",
-     "babel-eslint": "^10.0.3",
-     "babel-preset-taro": "3.0.21",
-     "eslint-config-taro": "3.0.21",
-     "eslint-plugin-import": "^2.12.0",
-     "eslint-plugin-react": "^7.8.2",
-     "eslint-plugin-react-hooks": "^1.6.1",
-     "eslint-plugin-taro": "3.0.16"
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-preset-taro": "3.0.21",
+    "eslint": "^7.19.0",
+    "eslint-config-taro": "3.0.21",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "eslint-plugin-taro": "3.0.16"
   }
 }
