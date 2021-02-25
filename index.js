@@ -42,7 +42,8 @@ import dva from './dva/dva';
 import baseModel from './dva/baseModel';
 import models from './dva/models';
 import modelTools from './dva/modelTools';
-import HttpConfig from './api/HttpConfig' //创建默认的 HTTP配置实例
+import HttpConfig from './api/HttpConfig'; //创建默认的 HTTP配置实例
+import { XHttp } from 'react-native-easy-app';
 
 const RNProjectTools = {
   baseTimer,
@@ -87,6 +88,8 @@ const RNProjectTools = {
   baseModel,
   models,
   modelTools,
+  HttpConfig,
+  XHttp,
 };
 
 module.exports = RNProjectTools;
