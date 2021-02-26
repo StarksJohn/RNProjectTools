@@ -43,7 +43,7 @@ import baseModel from './dva/baseModel';
 import models from './dva/models';
 import modelTools from './dva/modelTools';
 import HttpConfig from './api/HttpConfig'; //创建默认的 HTTP配置实例
-import { XHttp, XImage, XText, XView } from 'react-native-easy-app';
+import { XHttp, XImage, XText, XView, XWidget } from 'react-native-easy-app';
 
 const RNProjectTools = {
   baseTimer,
@@ -93,6 +93,7 @@ const RNProjectTools = {
   XView,
   XImage,
   XText,
+  XWidget,
 };
 
 module.exports = RNProjectTools;
