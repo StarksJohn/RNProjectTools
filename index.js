@@ -109,3 +109,5 @@ const RNProjectTools = {
 };
 
 module.exports = RNProjectTools;
+
+console.log("更新 submodule");
