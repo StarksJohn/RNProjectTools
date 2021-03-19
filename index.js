@@ -106,7 +106,7 @@ const RNProjectTools = {
   XSize,
   XTSize,
   ResetStyle,
+  aaa: "111",
 };
-console.log("更新 submodule");
 
 module.exports = RNProjectTools;
