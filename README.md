@@ -1,7 +1,30 @@
-# Common components, temporarily does not include any third-party libraries that rely on native code
+Config
 
-#Every time you push, the main project can be updated to the code with npm i --f RNProjectTools or yarn upgrade RNProjectTools,
+Add these libs into your parent project
 
-# Main project reference mode: "RNProjectTools": "git+https://github.com/cham1985/RNProjectTools.git",
+     yarn add 
+        native-base
+        react-native-easy-app
+        teaset
+     yarn add --dev 
+        @babel/plugin-proposal-nullish-coalescing-operator
+        @babel/plugin-proposal-optional-chaining
+        babel-eslint
+        babel-plugin-module-resolver
+        eslint-plugin-import
+        
+In a directory of your parent project that you want to be a submodule, execute the following command to create a submodule:
+    
+    git submodule add https://github.com/cham1985/RNProjectTools
 
-试着给此库加 有原生代码的库,然后在主项目引用下是否有问题,如 加  "@react-native-community/async-storage": "^1.9.0",
+
+
+     
+Execute the following command in the root directory of your parent project to update the latest code of the master branch of this repository:
+
+    git submodule update --remote
+    
+    
+Other collaborators of your parent project can use the following command to update the latest commit of this submodule you push
+        
+    git pull --recurse-submodules

@@ -106,7 +106,6 @@ const RNProjectTools = {
   XSize,
   XTSize,
   ResetStyle,
-  aaa: "111",
 };
 
 module.exports = RNProjectTools;
