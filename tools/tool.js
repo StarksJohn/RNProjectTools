@@ -1,7 +1,6 @@
-import { Platform } from 'react-native'
-import asyncStorage from './asyncStorage'
+import {Platform} from 'react-native';
+import asyncStorage from './asyncStorage';
 import _ from 'lodash';
-
 
 export default {
   /**
@@ -11,12 +10,13 @@ export default {
    * @returns {*|Promise<T | any[]>}
    */
   to: (promise) => {
-    return promise.then(res => {
-      return [null, res]
-    })
-      .catch(err => {
-        return [err]
+    return promise
+      .then((res) => {
+        return [null, res];
       })
+      .catch((err) => {
+        return [err];
+      });
   },
 
   /**
@@ -24,20 +24,20 @@ export default {
    * @param imgUrl
    * @returns {*}
    */
-  uri: (imgUrl='') => {
+  uri: (imgUrl = '') => {
     if (Platform.OS === 'ios' && imgUrl.startsWith('http:')) {
-      imgUrl = imgUrl.replace(/http/, 'https')
+      imgUrl = imgUrl.replace(/http/, 'https');
     }
-    return imgUrl
+    return imgUrl;
   },
 
   //换算显示的 xxx 万
-  tenThousandConversion: (n, unitStr/*超过10000后最后显示的单位*/) => {
+  tenThousandConversion: (n, unitStr /*超过10000后最后显示的单位*/) => {
     if (n >= 10000) {
-      n = Math.round((n / 10000) * 100) / 100
-      n = n + unitStr
+      n = Math.round((n / 10000) * 100) / 100;
+      n = n + unitStr;
     }
-    return n
+    return n;
   },
 
   /**
@@ -47,19 +47,19 @@ export default {
    * @param keys :比较全部属性: Object.keys(old) 或  比较某个属性 :['memberList']
    * @returns {boolean}
    */
-   shouldUpdate : (old, now, keys) => {
-    const isEmpty = object => {
+  shouldUpdate: (old, now, keys) => {
+    const isEmpty = (object) => {
       if (object === null) {
         return true;
       } else {
         switch (typeof object) {
-          case "undefined": {
+          case 'undefined': {
             return true;
           }
-          case "string": {
-            return object === "";
+          case 'string': {
+            return object === '';
           }
-          case "object": {
+          case 'object': {
             for (const key in object) {
               return false;
             }
@@ -76,7 +76,7 @@ export default {
         const key = keys[i];
         const oldValue = old[key];
         const nowValue = now[key];
-        if (typeof oldValue !== "function" && typeof nowValue !== "function") {
+        if (typeof oldValue !== 'function' && typeof nowValue !== 'function') {
           try {
             if (JSON.stringify(oldValue) !== JSON.stringify(nowValue)) {
               return true;
@@ -92,11 +92,11 @@ export default {
    * 缓存 initState 的某个属性,如果这个属性再 attributesToBeCached 里注册了的话
    * @param key
    */
-   cacheAnAttributeOfInitState : ({key, value,attributesToBeCached}) => {
+  cacheAnAttributeOfInitState: ({key, value, attributesToBeCached}) => {
     let index = _.indexOf(attributesToBeCached, key);
     if (index !== -1) {
       console.log('tool.js 开始缓存 initState.', key, ' 的值=', value);
       asyncStorage.setItem(key, value).then();
     }
-  }
-}
+  },
+};

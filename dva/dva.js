@@ -1,5 +1,4 @@
-import { create } from 'dva-core';
-import baseModel from './baseModel';
+import {create} from 'dva-core';
 
 let app;
 let store;
@@ -12,10 +11,6 @@ function createApp(opt) {
   //   opt.onAction = [createLogger()]
   // }
   console.log('dva.js createApp opt=', opt);
-
-  {
-    baseModel.attributesToBeCached=baseModel.attributesToBeCached.concat(opt.attributesToBeCached);
-  }
 
   app = create(opt);
 

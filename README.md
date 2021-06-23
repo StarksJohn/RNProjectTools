@@ -28,3 +28,5 @@ Execute the following command in the root directory of your parent project to up
 Other collaborators of your parent project can use the following command to update the latest commit of this submodule you push
         
     git pull --recurse-submodules
+    
+如果想在主项目里改动此子模块的代码以方便主项目测试,可在 sourceTree的 submodules 里查看 跟踪的改动记录

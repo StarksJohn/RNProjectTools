@@ -9,9 +9,15 @@ export default function (modelList = []) {
   const modelContainer = {};
 
   _.forEach(modelList, (it) => {
-    const nameSpace = _.isString(it) ? it : it.namespace;
+    console.log('models.ts forEach it=', it);
 
-    let modelObj = modelTools.createDefault(nameSpace);
+    const nameSpace = _.isString(it) ? it : it.namespace;
+    console.log('models.ts nameSpace=', nameSpace);
+
+    let modelObj = modelTools.createDefault({
+      nameSpace,
+      attributesToBeCached: it.attributesToBeCached,
+    });
     if (!_.isString(it)) {
       modelObj = _.merge(modelObj, it);
     }

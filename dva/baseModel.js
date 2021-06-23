@@ -3,8 +3,6 @@ import objTools from '../tools/objTools';
 import tool from '../tools/tool';
 import asyncStorage from '../tools/asyncStorage';
 
-// import {action as testModel_Actions} from './testModel';
-
 /**
  *  * https://dvajs.com/api/#model
  */
@@ -21,16 +19,21 @@ export default {
    */
   attributesToBeCached: [],
   baseEffects: {
-    saveSomeThing: 'saveSomeThing', //具体控件发的 effect,有 缓存 initState 的某个属性 作用
+    saveSomeThing: 'baseEffects/saveSomeThing', //具体控件发的 effect,有 缓存 initState 的某个属性 作用
+    awaitSaveSomeThing: 'baseEffects/awaitSaveSomeThing',
+  },
+  baseAction: {
+    saveSomeThing: 'baseAction/saveSomeThing', //触发 modelTools.js里的 reducers 的 saveSomeThing 的 action
+    awaitSaveSomeThing: 'baseAction/awaitSaveSomeThing',
   },
   baseSubscriptions: {
     //初始化缓存
-    initCache: ({ dispatch, history, attributesToBeCached }) => {
+    initCache: ({namespace, dispatch, history, attributesToBeCached}) => {
       console.log(
-        'baseModel.js subscriptions initCache dispatch=',
-        dispatch,
+        'baseModel.js subscriptions initCache namespace=',
+        namespace,
         ' attributesToBeCached=',
-        attributesToBeCached
+        attributesToBeCached,
       );
       _.forEach(attributesToBeCached, async (key) => {
         console.log('baseModel.js initCache forEach key=', key);
@@ -39,10 +42,16 @@ export default {
           'baseModel.js initCache forEach getItem key=',
           key,
           ' value=',
-          value
+          value,
         );
         if (objTools.isNotEmpty(value)) {
-          dispatch({ type: key, payload: value });
+          const payload = {[`${key}`]: value};
+          console.log('baseModel.js dispatch payload=', payload);
+
+          dispatch({
+            type: 'baseAction/saveSomeThing',
+            payload,
+          });
         }
       });
     },
