@@ -53,6 +53,7 @@ import {
   XTSize /*适配不同屏幕的字体,等比例缩放之*/,
   ResetStyle,
 } from 'react-native-easy-app';
+import ahooks from './tools/ahooks'
 
 const RNProjectTools = {
   baseTimer,
@@ -105,7 +106,7 @@ const RNProjectTools = {
   XWidget,
   XSize,
   XTSize,
-  ResetStyle,
+  ResetStyle,ahooks
 };
 
 module.exports = RNProjectTools;

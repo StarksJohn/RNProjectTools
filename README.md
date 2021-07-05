@@ -6,6 +6,7 @@ Add these libs into your parent project
         native-base
         react-native-easy-app
         teaset
+        ahooks
      yarn add --dev 
         @babel/plugin-proposal-nullish-coalescing-operator
         @babel/plugin-proposal-optional-chaining
