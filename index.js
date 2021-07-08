@@ -38,11 +38,11 @@ import useAndroidBackHandler from "./components/CustomHooks/useAndroidBackHandle
 import useSubscribeKeyboard from "./components/CustomHooks/useSubscribeKeyboard";
 import asyncStorage from "./tools/asyncStorage";
 import objTools from "./tools/objTools";
-import dva from './dva/dva';
-import baseModel from './dva/baseModel';
-import models from './dva/models';
-import modelTools from './dva/modelTools';
-import HttpConfig from './api/HttpConfig'; //创建默认的 HTTP配置实例
+import dva from "./dva/dva";
+import baseModel from "./dva/baseModel";
+import models from "./dva/models";
+import modelTools from "./dva/modelTools";
+import HttpConfig from "./api/HttpConfig"; //创建默认的 HTTP配置实例
 import {
   XHttp,
   XImage,
@@ -52,8 +52,8 @@ import {
   XSize /*取代dp*/,
   XTSize /*适配不同屏幕的字体,等比例缩放之*/,
   ResetStyle,
-} from 'react-native-easy-app';
-import ahooks from './tools/ahooks'
+} from "react-native-easy-app";
+import ahooks from "./tools/ahooks";
 
 const RNProjectTools = {
   baseTimer,
@@ -106,7 +106,8 @@ const RNProjectTools = {
   XWidget,
   XSize,
   XTSize,
-  ResetStyle,ahooks
+  ResetStyle,
+  ahooks,
 };
 
 module.exports = RNProjectTools;
