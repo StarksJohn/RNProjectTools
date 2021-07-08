@@ -32,4 +32,6 @@ Other collaborators of your parent project can use the following command to upda
     
 如果想在主项目里改动此子模块的代码以方便主项目测试,可在 sourceTree的 submodules 里查看 跟踪的改动记录
 
-push时如果SSL 失败, LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 ,就 终端翻墙+ git push origin master
+push时如果SSL 失败:
+
+    LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 ,就 终端翻墙+ git push origin master
