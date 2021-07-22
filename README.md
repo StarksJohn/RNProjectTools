@@ -26,7 +26,7 @@ All collaborators of your parent project can use the following command to update
 
 If the code of the submodule is changed in the main project, you can view the change record in submodules of sourceTree
 
-push :
+push
 
     If push fails in sourceTree,like:
     
