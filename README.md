@@ -21,6 +21,7 @@ In a directory of your parent project that you want to be a submodule, execute t
     
 All collaborators of your parent project can use the following command to update the latest commit of this submodule you push
         
+    git submodule update --remote 
     git pull --recurse-submodules
 
 If the code of the submodule is changed in the main project, you can view the change record in submodules of sourceTree
