@@ -33,3 +33,6 @@ push
     LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 
 
     It can be changed to Push after turning over the wall in the terminal
+
+            git push origin main
+
