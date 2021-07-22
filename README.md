@@ -16,7 +16,7 @@ Add these libs into your parent project
         
 In a directory of your parent project that you want to be a submodule, execute the following command to create a submodule:
     
-    git submodule add https://github.com/cham1985/RNProjectTools
+    git submodule add https://github.com/StarksJohn/RNProjectTools
 
 
 
@@ -29,9 +29,13 @@ Execute the following command in the root directory of your parent project to up
 Other collaborators of your parent project can use the following command to update the latest commit of this submodule you push
         
     git pull --recurse-submodules
+
+If the code of the submodule is changed in the main project, you can view the change record in submodules of sourceTree
+
+push
+
+    If push fails in sourceTree,like:
     
-如果想在主项目里改动此子模块的代码以方便主项目测试,可在 sourceTree的 submodules 里查看 跟踪的改动记录
+    LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 
 
-push时如果SSL 失败:
-
-    LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 ,就 终端翻墙+ git push origin master
+    It can be changed to Push after turning over the wall in the terminal
