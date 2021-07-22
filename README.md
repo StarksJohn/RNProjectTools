@@ -17,16 +17,9 @@ Add these libs into your parent project
 In a directory of your parent project that you want to be a submodule, execute the following command to create a submodule:
     
     git submodule add https://github.com/StarksJohn/RNProjectTools
-
-
-
-     
-Execute the following command in the root directory of your parent project to update the latest code of the master branch of this repository:
-
-    git submodule update --remote
     
     
-Other collaborators of your parent project can use the following command to update the latest commit of this submodule you push
+All collaborators of your parent project can use the following command to update the latest commit of this submodule you push
         
     git pull --recurse-submodules
 
