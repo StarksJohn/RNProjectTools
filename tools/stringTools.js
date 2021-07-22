@@ -142,9 +142,7 @@ export function muti16(v, n) {
 
 // 过滤所有特殊字符
 export function stripscript(s) {
-  var pattern = new RegExp(
-    "[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？↵\r\n]",
-  );
+  var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？↵\r\n]");
   var rs = '';
   for (var i = 0; i < s.length; i++) {
     rs = rs + s.substr(i, 1).replace(pattern, '');
@@ -289,12 +287,7 @@ export function isAllNum(val) {
  */
 export function regularMatchesTheNumbers(str) {
   const num = parseFloat(str.replace(/[^\d]/g, ' '));
-  console.log(
-    'stringTools.js regularMatchesTheNumbers str=',
-    str,
-    ' num=',
-    num,
-  );
+  console.log('stringTools.js regularMatchesTheNumbers str=', str, ' num=', num);
   return num;
 }
 
@@ -568,8 +561,7 @@ export function parseUrl(url) {
     const host_portArr = host_portStr.split(':');
     host = host_portArr[0];
     port = host_portArr[1];
-    params =
-      host_port_path_paramsArr.length > 1 ? host_port_path_paramsArr[1] : '';
+    params = host_port_path_paramsArr.length > 1 ? host_port_path_paramsArr[1] : '';
   }
   return {
     host,
@@ -618,7 +610,7 @@ export function insertStr(soure, start, newStr) {
  */
 String.prototype.isEmoji = function () {
   let reg = emojiRegex(
-    /[\u{1F601}-\u{1F64F}\u{2702}-\u{27B0}\u{1F680}-\u{1F6C0}\u{1F170}-\u{1F251}\u{1F600}-\u{1F636}\u{1F681}-\u{1F6C5}\u{1F30D}-\u{1F567}]/gu,
+    /[\u{1F601}-\u{1F64F}\u{2702}-\u{27B0}\u{1F680}-\u{1F6C0}\u{1F170}-\u{1F251}\u{1F600}-\u{1F636}\u{1F681}-\u{1F6C5}\u{1F30D}-\u{1F567}]/gu
   );
   const res = this.match(reg);
 
@@ -655,7 +647,9 @@ export function isJsonStr(str) {
   if (typeof str === 'string') {
     try {
       let obj = JSON.parse(str);
-      if (typeof obj === 'object' && obj) {
+      console.log('stringTools.js isJsonStr obj=', obj);
+      console.log('stringTools.js isJsonStr typeof obj=', typeof obj);
+      if ((typeof obj === 'object' && obj) || typeof obj === 'boolean') {
         console.log('stringTools.js isJsonStr str=', str, ' 是json字符串');
         return true;
       } else {
@@ -663,12 +657,7 @@ export function isJsonStr(str) {
         return false;
       }
     } catch (e) {
-      console.log(
-        'stringTools.js isJsonStr str=',
-        str,
-        ' 不是json字符串 e=',
-        e,
-      );
+      console.log('stringTools.js isJsonStr str=', str, ' 不是json字符串 e=', e);
       return false;
     }
   }
